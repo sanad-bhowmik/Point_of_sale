@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,47 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'phone'; 
+    }
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // Attempt to log the user in
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
+        }
+
+        // If the login attempt was unsuccessful, redirect back with error message
+        return redirect()->back()->withInput($request->only('phone'))->withErrors([
+            'phone' => 'These credentials do not match our records.',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/');
     }
 }

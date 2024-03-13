@@ -16298,6 +16298,7 @@ small {
 
 .card .card-body {
   padding: 1.88rem 1.81rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .card .card-body+.card-body {
@@ -18653,6 +18654,7 @@ small {
 /* Sidebar */
 
 .sidebar {
+  
   min-height: calc(100vh - 63px);
   background: #fff;
   font-family: "Roboto", sans-serif;
@@ -18756,7 +18758,7 @@ small {
   width: 16px;
   line-height: 1;
   font-size: 18px;
-  color: #979696;
+  color: dodgerblue;
 }
 
 .rtl .sidebar .nav .nav-item .nav-link .menu-icon {
@@ -18860,10 +18862,10 @@ small {
 }
 
 .sidebar .nav:not(.sub-menu)>.nav-item:hover:not(.nav-profile)>.nav-link {
-  background: #A1FFCE;  
-  background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);  
+  background: #A1FFCE;
+  background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);
   background: linear-gradient(to right, #FAFFD1, #A1FFCE);
-  
+
 }
 
 .sidebar .nav.sub-menu {

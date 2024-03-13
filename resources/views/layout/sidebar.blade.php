@@ -39,58 +39,60 @@
         </button>
       </div>
     </li>
+
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
         <i class="menu-icon mdi mdi-television"></i>
+
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Dashboard</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-television"></i>
+        <i class="menu-icon mdi mdi-account-check"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Admin</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-television"></i>
+        <i class="menu-icon mdi mdi-cart-plus"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Purchase</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-television"></i>
+        <i class="menu-icon mdi mdi mdi-barcode-scan"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Sales</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-television"></i>
+        <i class="menu-icon mdi mdi-clipboard-check"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Stock</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-television"></i>
+        <i class="menu-icon mdi mdi-account-multiple"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Accounts</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-television"></i>
+        <i class="menu-icon mdi mdi-fingerprint"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Payment</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-television"></i>
+        <i class="menu-icon mdi mdi-elevation-rise"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Report</span>
       </a>
     </li>
 
     <li class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link" href="{{ url('/charts/chartjs') }}">
-        <i class="menu-icon mdi mdi-chart-line"></i>
+        <i class="menu-icon mdi mdi-chart-pie"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Charts</span>
       </a>
     </li>
