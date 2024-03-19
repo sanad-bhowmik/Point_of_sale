@@ -20,5 +20,4 @@ class PosCustomer extends Model
      * @var array
      */
     protected $fillable = ['name', 'mobile', 'addedDate'];
-    use HasFactory;
 }

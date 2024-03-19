@@ -42,66 +42,100 @@
 
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-television"></i>
-
+        <img src="{{ url('assets/images/sidenav/dashboard.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Dashboard</span>
       </a>
     </li>
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-account-check"></i>
+    <!-- Admin -->
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#adminSubMenu" aria-expanded="false" aria-controls="adminSubMenu">
+        <img src="{{ url('assets/images/sidenav/protection.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Admin</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['category']) }}" href="{{ route('admin.category') }}">
+          <img src="{{ url('assets/images/sidenav/application.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Category</span>
+        </a>
+      </div>
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['brand']) }}" href="{{ route('admin.brand') }}">
+          <img src="{{ url('assets/images/sidenav/C.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Brand</span>
+        </a>
+      </div>
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['description']) }}" href="{{ route('admin.description') }}">
+          <img src="{{ url('assets/images/sidenav/job-description.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Description</span>
+        </a>
+      </div>
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['seregistration']) }}" href="{{ route('admin.seregistration') }}">
+          <img src="{{ url('assets/images/sidenav/website.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">SE Registration</span>
+        </a>
+      </div>
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['supplier']) }}" href="{{ route('admin.supplier') }}">
+          <img src="{{ url('assets/images/sidenav/supplier.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Supplier</span>
+        </a>
+      </div>
     </li>
+    <!-- Admin -->
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-cart-plus"></i>
+        <img src="{{ url('assets/images/sidenav/shopping-cart.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Purchase</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi mdi-barcode-scan"></i>
+        <img src="{{ url('assets/images/sidenav/graph.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Sales</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-clipboard-check"></i>
+        <img src="{{ url('assets/images/sidenav/in-stock.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Stock</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-account-multiple"></i>
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Accounts</span>
-      </a>
+      <img src="{{ url('assets/images/sidenav/profile.png') }}" alt="profile image" style="margin-right: 10px;">
+      <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Accounts</span>
+    </a>
+  </li>
+  <li class="nav-item {{ active_class(['/']) }}">
+    <a class="nav-link" href="{{ url('/') }}">
+      <img src="{{ url('assets/images/sidenav/cash-payment.png') }}" alt="profile image" style="margin-right: 10px;">
+      <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Payment</span>
+    </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-fingerprint"></i>
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Payment</span>
-      </a>
-    </li>
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
-        <i class="menu-icon mdi mdi-elevation-rise"></i>
+        <img src="{{ url('assets/images/sidenav/report.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Report</span>
       </a>
     </li>
-
+    
     <li class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link" href="{{ url('/charts/chartjs') }}">
-        <i class="menu-icon mdi mdi-chart-pie"></i>
+        <img src="{{ url('assets/images/sidenav/pie-chart.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Charts</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['tables/basic-table']) }}">
       <a class="nav-link" href="{{ url('/tables/basic-table') }}">
-        <i class="menu-icon mdi mdi-table-large"></i>
+        <img src="{{ url('assets/images/sidenav/frequency.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Tables</span>
       </a>
     </li>
+
+    <!-- No Need -->
     <li class="nav-item {{ active_class(['icons/material']) }}">
       <a class="nav-link" href="{{ url('/icons/material') }}">
         <i class="menu-icon mdi mdi-emoticon"></i>

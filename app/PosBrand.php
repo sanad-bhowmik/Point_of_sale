@@ -12,6 +12,7 @@ class PosBrand extends Model
         'user_id',
         'name',
         'category',
+        'category_name',
         'created_at',
         'updated_at',
         'status',

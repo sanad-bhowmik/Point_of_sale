@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\AdminController;
 use App\Models\SalesItemReport;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +26,26 @@ Route::get('/home', function () {
 
     return view('dashboard', ['dataString' => $data]);
 });
+
+
+// ----------------------Admin Controller------------------------//
+
+Route::get('/category', 'AdminController@showCategoryView')->name('admin.category');
+Route::post('/category/store', 'AdminController@storeCategory')->name('admin.category.store');
+Route::get('/category/data', 'AdminController@getCategoryData')->name('admin.category.data');
+Route::get('/brand/data', 'AdminController@getBrandData')->name('admin.brand.data');
+Route::get('/brand', 'AdminController@showBrandView')->name('admin.brand');
+Route::post('/brand/store', 'AdminController@storeBrand')->name('admin.brand.store');
+Route::get('/description', 'AdminController@showDescriptionView')->name('admin.description');
+Route::post('/description/save', 'AdminController@saveDescription')->name('admin.description.save');
+Route::get('/seregistration', 'AdminController@showSeRegistrationView')->name('admin.seregistration');
+Route::get('/supplier', 'AdminController@showSupplierView')->name('admin.supplier');
+Route::post('/supplier', 'AdminController@saveSupplier')->name('admin.supplier.save');
+Route::delete('/supplier/{id}', 'AdminController@deleteSupplier')->name('admin.supplier.delete');
+
+
+// ----------------------Admin Controller------------------------//
+
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 // Route::get('/','DashboardController@index');

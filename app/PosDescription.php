@@ -18,7 +18,6 @@ class PosDescription extends Model
         'vat_percent',
         'description_code',
         'description',
-        'cost_price',
         'sale_price',
         'mrp',
         'status',
