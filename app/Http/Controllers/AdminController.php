@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PosCustomer;
+use App\Models\PosStockReport;
+use App\Models\PosStockSummary;
+use App\Models\PurchaseDetail;
 use App\Models\ShopInfo;
 use App\Models\User;
 use App\PosAddSupplier;
@@ -27,6 +30,30 @@ class AdminController extends Controller
         return view('category');
     }
 
+    public function showStockModule()
+    {
+        $stockReports = PosStockReport::all();
+        $totalQty = PosStockReport::sum('qty');
+        $categories = PosStockReport::distinct()->pluck('category')->filter()->values();
+        $brands = PosStockReport::distinct()->pluck('model')->filter()->values();
+        $descriptions = PosStockReport::distinct()->pluck('description')->filter()->values();
+
+        $purchaseLists = PosPurchaseList::all();
+
+        return view('stockModule', compact('stockReports', 'totalQty', 'categories', 'brands', 'descriptions', 'purchaseLists'));
+    }
+
+
+
+
+    public function showStockSummery()
+    {
+        $stockSummaries = PosStockSummary::all();
+
+        // Pass the data to the view
+        return view('stockSummery', compact('stockSummaries'));
+    }
+
     public function showPurchaseView()
     {
         $purchaseList = PosPurchaseList::all();
@@ -34,6 +61,8 @@ class AdminController extends Controller
 
         return view('purchase', compact('purchaseList', 'vendors'));
     }
+
+
 
     public function showSupplierView()
     {
@@ -332,7 +361,7 @@ class AdminController extends Controller
 
     public function storePurchase(Request $request)
     {
-        
+
         $validatedData = $request->validate([
             'date' => 'required|date',
             'categoryName' => 'required',
@@ -347,7 +376,7 @@ class AdminController extends Controller
         ]);
 
         $purchase = new PosPurchaseAdd();
-        $purchase->user_id = auth()->user()->id; 
+        $purchase->user_id = auth()->user()->id;
         $purchase->date = $validatedData['date'];
         $purchase->category = $validatedData['categoryName'];
         $purchase->brand = $validatedData['brandName'];

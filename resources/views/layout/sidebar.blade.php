@@ -111,8 +111,8 @@
         </a>
       </div>
     </li>
-    <!-- Admin -->
-    <li class="nav-item {{ active_class(['/purchase']) }}" >
+    <!-- Purchase -->
+    <li class="nav-item {{ active_class(['/purchase']) }}">
       <a class="nav-link" href="{{ url('/purchase') }}">
         <img src="{{ url('assets/images/sidenav/shopping-cart.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Purchase</span>
@@ -127,12 +127,31 @@
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Sales</span>
       </a>
     </li>
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
+
+    <!-- Stock -->
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#stockSubMenu" aria-expanded="false" aria-controls="stockSubMenu">
         <img src="{{ url('assets/images/sidenav/in-stock.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Stock</span>
+        <i class="menu-arrow"></i>
       </a>
+
+      <div class="collapse" id="stockSubMenu">
+        <a class="nav-link {{ active_class(['stockSummery']) }}" href="{{ route('stockSummery') }}">
+          <img src="{{ url('assets/images/sidenav/stockSummary.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Stock Summary</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="stockSubMenu">
+        <a class="nav-link {{ active_class(['stockModule']) }}" href="{{ route('stockModule') }}">
+          <img src="{{ url('assets/images/sidenav/module.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Stock Module</span>
+        </a>
+      </div>
     </li>
+    <!-- Stock -->
+
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
         <img src="{{ url('assets/images/sidenav/profile.png') }}" alt="profile image" style="margin-right: 10px;">

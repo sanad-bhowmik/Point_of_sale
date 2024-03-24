@@ -101,7 +101,7 @@
         display: none;
         padding: 10px;
         transition: opacity 0.3s ease-in-out;
-        background: url(https://img.freepik.com/free-vector/minimalist-white-background-with-neumorphic-circle_1017-39167.jpg);
+        background: url(https://wallpapercave.com/wp/wp8963675.jpg);
         background-repeat: no-repeat;
         height: 93%;
         margin-top: 15px;
@@ -194,9 +194,9 @@
 <div class="tab-container">
     <div class="tab active" id="tab1" onclick="switchTab(1)" style="font-size: 100%;font-family: none;">Add/Edit Purchase</div>
     <div class="tab" id="tab2" onclick="switchTab(2)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase List</div>
-    <div class="tab" id="tab4" onclick="switchTab(4)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">MRP Adjustment</div>
-    <div class="tab" id="tab5" onclick="switchTab(5)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase Return</div>
-    <div class="tab" id="tab6" onclick="switchTab(6)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase History</div>
+    <div class="tab" id="tab4" onclick="switchTab(3)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">MRP Adjustment</div>
+    <div class="tab" id="tab5" onclick="switchTab(4)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase Return</div>
+    <div class="tab" id="tab6" onclick="switchTab(5)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase History</div>
 </div>
 
 <div class="tab-content active" id="tabContent1">
@@ -206,7 +206,7 @@
         <div class="form-row" style="margin-bottom: 2rem;">
             <div class="form-group col-md-6">
                 <label for="date">Date</label>
-                <input type="text"  id="date" name="date" placeholder="Date" required class="form-control" style="height: 45px;font-size: 14px;font-weight: bolder;font-family: cursive;" readonly>
+                <input type="text" id="date" name="date" placeholder="Date" required class="form-control" style="height: 45px;font-size: 14px;font-weight: bolder;font-family: cursive;" readonly>
             </div>
             <!-- Category -->
             <div class="form-group col-md-6">
@@ -222,8 +222,8 @@
         </div>
 
         <div class="form-row" style="margin-bottom: 2rem;">
-         <!-- Brand -->
-         <div class="form-group col-md-6">
+            <!-- Brand -->
+            <div class="form-group col-md-6">
                 <label for="brandName">Product Brand</label>
                 <select id="brandName" name="brandName" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
                     <option value="" selected>Select Brand</option>
@@ -239,7 +239,7 @@
                 </select>
             </div>
 
-           
+
         </div>
 
         <div class="form-row" style="margin-bottom: 2rem;">
@@ -344,19 +344,151 @@
     </div>
 </div>
 
+<!-- Tab3 -->
 <div class="tab-content" id="tabContent3">
-    <!-- Purchase List content -->
+    <!-- mrpAdjust List content -->
+    <form id="mrpAdjust">
+        <div class="form-group col-md-6">
+            <label for="categoryName">Product Category</label>
+            <select id="categoryName" name="categoryName" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                <option value="" selected>Select Category</option>
+                <option value="" selected>Select Category</option>
+                @foreach ($vendors as $vendor)
+                <option value="{{ $vendor->category }}">{{ $vendor->category }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="dropdown2">Dropdown 2:</label>
+            <select class="form-control" id="dropdown2" name="dropdown2">
+                <!-- Options for Dropdown 2 -->
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="dropdown3">Dropdown 3:</label>
+            <select class="form-control" id="dropdown3" name="dropdown3">
+                <!-- Options for Dropdown 3 -->
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputField">Input Field:</label>
+            <input type="text" class="form-control" id="inputField" name="inputField">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 
+
 <div class="tab-content" id="tabContent4">
-    <!-- MRP Adjustment content -->
+    <!-- Purchase Return content -->
+    <form id="brandForm" action="{{ route('purchase') }}" method="post" style="padding-left: 10%;padding-right: 10%;font-size: 14px;">
+        {{ csrf_field() }}
+        <div class="form-row" style="margin-bottom: 2rem;">
+            <div class="form-group col-md-6">
+                <label for="date">Date</label>
+                <input type="text" id="date" name="date" placeholder="Date" required class="form-control" style="height: 45px;font-size: 14px;font-weight: bolder;font-family: cursive;" readonly>
+            </div>
+            <!-- Category -->
+            <div class="form-group col-md-6">
+                <label for="categoryName">Product Category</label>
+                <select id="categoryName" name="categoryName" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                    <option value="" selected>Select Category</option>
+                    @foreach ($vendors as $vendor)
+                    <option value="{{ $vendor->category }}">{{ $vendor->category }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-row" style="margin-bottom: 2rem;">
+            <!-- Brand -->
+            <div class="form-group col-md-6">
+                <label for="brandName">Product Brand</label>
+                <select id="brandName" name="brandName" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                    <option value="" selected>Select Brand</option>
+                    <!-- Brand options will be dynamically loaded here -->
+                </select>
+            </div>
+
+            <!-- Decsription -->
+            <div class="form-group col-md-6">
+                <label for="descriptionName">Product Description</label>
+                <select id="descriptionName" name="descriptionName" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                    <option value="" selected>Select Description</option>
+                </select>
+            </div>
+
+
+        </div>
+
+        <div class="form-row" style="margin-bottom: 2rem;">
+            <!-- MRP -->
+            <div class="form-group col-md-6">
+                <label for="mrp">MRP</label>
+                <input type="text" id="mrp" name="mrp" placeholder="MRP" required class="form-control" style="height: 45px;font-size: 14px;" readonly>
+            </div>
+
+            <!-- SES Price -->
+            <div class="form-group col-md-6">
+                <label for="sesPrice">SES Price</label>
+                <input type="text" id="sesPrice" name="sesPrice" placeholder="SES Price" required class="form-control" style="height: 45px;font-size: 14px;" readonly>
+            </div>
+
+        </div>
+
+        <div class="form-row" style="margin-bottom: 2rem;">
+            <!-- Vendor -->
+            <div class="form-group col-md-6">
+                <label for="vendor">Vendor</label>
+                <select id="vendor" name="vendor" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                    <option value="" selected>Select Vendor</option>
+                    @foreach ($vendors as $vendor)
+                    <option value="{{ $vendor->id }}">{{ $vendor->vendor }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <!-- Entry Model -->
+            <div class="form-group col-md-6">
+                <label for="entryModel">Entry Model</label>
+                <select id="entryModel" name="entryModel" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                    <option value="" selected>Select Entry Model</option>
+                    <option value="Barcode">Barcode</option>
+                    <option value="Quantity">Quantity</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <!-- Qty -->
+            <div class="form-group col-md-6">
+                <label for="qty">Qty</label>
+                <input type="text" id="qty" name="qty" placeholder="Qty" required class="form-control" style="height: 45px;font-size: 14px;">
+            </div>
+
+
+            <!-- Barcode -->
+            <div class="form-group col-md-6">
+                <label for="barcode">Barcode</label>
+                <input type="text" id="barcode" name="barcode" placeholder="Barcode" required class="form-control" style="height: 45px; font-size: 14px;">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" onclick="cancelForm()" class="btn btn-danger">Cancel</button>
+        </div>
+    </form>
+
 </div>
 
 <div class="tab-content" id="tabContent5">
-    <!-- Purchase Return content -->
-</div>
-
-<div class="tab-content" id="tabContent6">
     <!-- Purchase History content -->
 </div>
 
@@ -418,7 +550,7 @@
 <script>
     var vendorsByCategory = @json($vendors->groupBy('category')->toArray());
     var vendorsByBrand = @json($vendors->groupBy('brand')->toArray());
-    var vendorsByDescription =  @json($vendors->groupBy('description')->toArray());
+    var vendorsByDescription = @json($vendors->groupBy('description')->toArray());
     // var vendorsByCategory = @json($vendors->groupBy('category')->toArray());
     // var vendorsByBrand = @json($vendors->groupBy('brand')->toArray());
     // var vendorsByDescription = @json($vendors->groupBy('description')->toArray());
@@ -491,7 +623,7 @@
     var hours = ('0' + today.getHours()).slice(-2);
     var minutes = ('0' + today.getMinutes()).slice(-2);
 
-    var formattedDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes ;
+    var formattedDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
 
     $('#date').val(formattedDateTime);
 </script>

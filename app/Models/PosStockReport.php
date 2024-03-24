@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PosStockReport extends Model
@@ -15,5 +14,4 @@ class PosStockReport extends Model
         'description',
         'qty',
     ];
-    use HasFactory;
 }

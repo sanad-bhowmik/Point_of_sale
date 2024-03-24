@@ -92,7 +92,7 @@
         display: none;
         padding: 10px;
         transition: opacity 0.3s ease-in-out;
-        background: url(https://img.freepik.com/free-vector/minimalist-white-background-with-neumorphic-circle_1017-39167.jpg);
+        background: url(https://wallpapercave.com/wp/wp8963675.jpg);
         background-repeat: no-repeat;
         height: 87%;
         margin-top: 15px;

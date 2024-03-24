@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Models\SalesItemReport;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
@@ -52,7 +53,10 @@ Route::post('/updateShopStatus/{id}', 'AdminController@updateShopStatus')->name(
 
 Route::get('/purchase', 'AdminController@showpurchaseView')->name('purchase');
 Route::post('/purchase', 'AdminController@storePurchase')->name('purchase.store');
+Route::post('/mrp-adjustment', 'PurchaseDetailController@mrpAdjustment')->name('mrp_adjustment');
 
+Route::get('/stockSummery', 'AdminController@showStockSummery')->name('stockSummery');
+Route::get('/stockModule', 'AdminController@showStockModule')->name('stockModule');
 
 // ----------------------Admin Controller------------------------//
 
