@@ -16,6 +16,63 @@
         margin-bottom: 20px;
     }
 
+    .toast-success {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        animation: slideIn 0.5s ease-in-out;
+    }
+
+    .toast-success .icon {
+        margin-right: 10px;
+        font-size: 24px;
+        animation: rotate 1s infinite;
+    }
+
+    .password-container {
+        position: relative;
+    }
+
+    .password-toggle {
+        position: absolute;
+        left: 64%;
+        /* Adjust as needed */
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .password-toggle i {
+        color: #ccc;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
     label {
         display: block;
         margin-bottom: 5px;
@@ -141,7 +198,9 @@
         background-color: #f2f2f2;
     }
 
-
+    #delete {
+        background: transparent;
+    }
 
     @keyframes squeeze3124 {
         0% {
@@ -191,7 +250,7 @@
 <div class="tab-content active" id="tabContent1">
     <h3 style="text-align: center;margin-bottom: 2%;">Add/Edit Shop User</h3>
     <p style="height: 3px;background: #0002A1;width: 56px;top: -0.75rem;border-radius: 3px;margin-left: 23%;margin-top: 4px;"></p>
-    <form id="shopuserForm" method="post" action="{{ route('admin.seregistration') }}" style="padding-left: 10%;padding-right: 10%;">
+    <form id="shopuserForm" method="post" action="{{ route('save.seregistration') }}" style="padding-left: 10%;padding-right: 10%;">
         {{ csrf_field() }}
 
         <div class="row">
@@ -215,18 +274,26 @@
                 <input type="text" id="userName" name="user_name" placeholder="Enter User Name" required>
             </div>
 
-            <div class="form-group" style="margin-bottom: 2rem; width: 48%; float: right;">
+            <div class="form-group" style="margin-bottom: 2rem; width: 48%; float: left;">
                 <label for="password">Password</label>
-                <br>
-                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                <div class="password-container">
+                    <span class="password-toggle" onclick="togglePassword('password')">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="form-group" style="margin-bottom: 2rem; width: 48%; float: left;">
+            <div class="form-group" style="margin-bottom: 2rem; width: 48%; float: right;">
                 <label for="confirmPassword">Confirm Password</label>
-                <br>
-                <input type="password" id="confirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+                <div class="password-container">
+                    <span class="password-toggle" onclick="togglePassword('confirmPassword')">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                    <input type="password" id="confirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
             </div>
 
             <div class="form-group" style="margin-bottom: 2rem; width: 48%; float: right;">
@@ -278,7 +345,6 @@
                 <tr>
                     <th>Shop Name</th>
                     <th>Name</th>
-                    <th>User Name</th>
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Action</th>
@@ -286,15 +352,16 @@
             </thead>
             <tbody>
                 @foreach($users as $user)
-                <tr>
-                    <td>{{ $user->shop }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->username }}</td>
-                    <td>{{ $user->phone }}</td>
+                <tr id="{{ $user->id }}">
+                    <td>{{ $user->shop_name }}</td>
+                    <td>{{ $user->user_name }}</td>
+                    <td>{{ $user->number }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
                         <img src="{{ url('assets/images/edit.png') }}" alt="Edit" style="margin-right: 10px;">
-                        <img src="{{ url('assets/images/trash.png') }}" alt="Delete">
+                        <button id="delete">
+                            <img src="{{ url('assets/images/trash.png') }}" alt="Delete">
+                        </button>
                     </td>
                 </tr>
                 @endforeach
@@ -303,6 +370,7 @@
     </div>
 </div>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 @endsection
 
@@ -343,4 +411,72 @@
             }
         });
     });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var deleteButtons = document.querySelectorAll("#delete");
+
+        deleteButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                var row = this.closest('tr');
+                var userId = row.getAttribute('id');
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('DELETE', '/deleteUser/' + userId, true);
+                xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            row.remove();
+                            console.log("User deleted successfully");
+
+                            var toast = document.createElement('div');
+                            toast.classList.add('toast-success');
+                            toast.innerHTML = '<span class="icon">&#10003;</span> User deleted successfully';
+                            document.body.appendChild(toast);
+
+                            setTimeout(function() {
+                                toast.remove();
+                            }, 3000);
+                        } else {
+                            console.error("Failed to delete user");
+                        }
+                    }
+                };
+                xhr.send();
+            });
+        });
+    });
+</script>
+
+<script>
+    function togglePassword(inputId) {
+        var input = document.getElementById(inputId);
+        var icon = input.parentElement.querySelector('.password-toggle i');
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = "password";
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+
+    function validatePassword() {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        var passwordError = document.getElementById('password-error');
+
+        if (password !== confirmPassword) {
+            passwordError.textContent = "Passwords do not match";
+            return false; 
+        } else {
+            passwordError.textContent = "";
+            return true; 
+        }
+    }
 </script>

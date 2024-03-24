@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use App\Http\Controllers\AdminController;
 use App\Models\SalesItemReport;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    $data = SalesItemReport::pluck('net_amount')->toJson(); 
+    $data = SalesItemReport::pluck('net_amount')->toJson();
 
     return view('dashboard', ['dataString' => $data]);
 });
@@ -33,15 +22,36 @@ Route::get('/home', function () {
 Route::get('/category', 'AdminController@showCategoryView')->name('admin.category');
 Route::post('/category/store', 'AdminController@storeCategory')->name('admin.category.store');
 Route::get('/category/data', 'AdminController@getCategoryData')->name('admin.category.data');
+
 Route::get('/brand/data', 'AdminController@getBrandData')->name('admin.brand.data');
 Route::get('/brand', 'AdminController@showBrandView')->name('admin.brand');
 Route::post('/brand/store', 'AdminController@storeBrand')->name('admin.brand.store');
+
 Route::get('/description', 'AdminController@showDescriptionView')->name('admin.description');
+Route::get('/description/data', 'AdminController@getDescriptionData')->name('admin.description.data');
 Route::post('/description/save', 'AdminController@saveDescription')->name('admin.description.save');
+
 Route::get('/seregistration', 'AdminController@showSeRegistrationView')->name('admin.seregistration');
+Route::post('/save-se-registration', 'AdminController@saveSeRegistration')->name('save.seregistration');
+Route::delete('/deleteUser/{id}', 'AdminController@deleteUser')->name('deleteUser');
+
 Route::get('/supplier', 'AdminController@showSupplierView')->name('admin.supplier');
 Route::post('/supplier', 'AdminController@saveSupplier')->name('admin.supplier.save');
 Route::delete('/supplier/{id}', 'AdminController@deleteSupplier')->name('admin.supplier.delete');
+
+Route::get('/costingHead', 'AdminController@showCostingHeadView')->name('admin.costingHead');
+Route::post('/costingHead', 'AdminController@storeCostingHead')->name('admin.costingHead');
+
+Route::get('/shopLogo', 'AdminController@showShopLogoView')->name('admin.shopLogo');
+Route::post('/shopLogo', 'AdminController@storeShopLogo')->name('admin.storeShopLogo');
+Route::delete('/deleteShopLogo/{id}', 'AdminController@deleteShopLogo')->name('admin.deleteShopLogo');
+
+Route::get('/shopStatus', 'AdminController@showShopStatusView')->name('admin.shopStatus');
+Route::post('/updateShopStatus/{id}', 'AdminController@updateShopStatus')->name('admin.updateShopStatus');
+
+
+Route::get('/purchase', 'AdminController@showpurchaseView')->name('purchase');
+Route::post('/purchase', 'AdminController@storePurchase')->name('purchase.store');
 
 
 // ----------------------Admin Controller------------------------//

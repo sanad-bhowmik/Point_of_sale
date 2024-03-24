@@ -40,8 +40,8 @@
       </div>
     </li>
 
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
+    <li class="nav-item {{ active_class(['/home']) }}">
+      <a class="nav-link" href="{{ url('/home') }}">
         <img src="{{ url('assets/images/sidenav/dashboard.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Dashboard</span>
       </a>
@@ -53,44 +53,74 @@
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Admin</span>
         <i class="menu-arrow"></i>
       </a>
+
       <div class="collapse" id="adminSubMenu">
         <a class="nav-link {{ active_class(['category']) }}" href="{{ route('admin.category') }}">
           <img src="{{ url('assets/images/sidenav/application.png') }}" alt="profile image" style="margin-right: 10px;">
           <span class="menu-title">Category</span>
         </a>
       </div>
+
       <div class="collapse" id="adminSubMenu">
         <a class="nav-link {{ active_class(['brand']) }}" href="{{ route('admin.brand') }}">
           <img src="{{ url('assets/images/sidenav/C.png') }}" alt="profile image" style="margin-right: 10px;">
           <span class="menu-title">Brand</span>
         </a>
       </div>
+
       <div class="collapse" id="adminSubMenu">
         <a class="nav-link {{ active_class(['description']) }}" href="{{ route('admin.description') }}">
           <img src="{{ url('assets/images/sidenav/job-description.png') }}" alt="profile image" style="margin-right: 10px;">
           <span class="menu-title">Description</span>
         </a>
       </div>
+
       <div class="collapse" id="adminSubMenu">
         <a class="nav-link {{ active_class(['seregistration']) }}" href="{{ route('admin.seregistration') }}">
           <img src="{{ url('assets/images/sidenav/website.png') }}" alt="profile image" style="margin-right: 10px;">
           <span class="menu-title">SE Registration</span>
         </a>
       </div>
+
       <div class="collapse" id="adminSubMenu">
         <a class="nav-link {{ active_class(['supplier']) }}" href="{{ route('admin.supplier') }}">
           <img src="{{ url('assets/images/sidenav/supplier.png') }}" alt="profile image" style="margin-right: 10px;">
           <span class="menu-title">Supplier</span>
         </a>
       </div>
+
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['costingHead']) }}" href="{{ route('admin.costingHead') }}">
+          <img src="{{ url('assets/images/sidenav/package.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Costing Head</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['shopLogo']) }}" href="{{ route('admin.shopLogo') }}">
+          <img src="{{ url('assets/images/sidenav/picture.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Shop Logo</span>
+        </a>
+      </div>
+
+
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['shopStatus']) }}" href="{{ route('admin.shopStatus') }}">
+          <img src="{{ url('assets/images/sidenav/contract.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Shop Status</span>
+        </a>
+      </div>
     </li>
     <!-- Admin -->
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
+    <li class="nav-item {{ active_class(['/purchase']) }}" >
+      <a class="nav-link" href="{{ url('/purchase') }}">
         <img src="{{ url('assets/images/sidenav/shopping-cart.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Purchase</span>
       </a>
     </li>
+
+
+
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
         <img src="{{ url('assets/images/sidenav/graph.png') }}" alt="profile image" style="margin-right: 10px;">
@@ -105,15 +135,15 @@
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
-      <img src="{{ url('assets/images/sidenav/profile.png') }}" alt="profile image" style="margin-right: 10px;">
-      <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Accounts</span>
-    </a>
-  </li>
-  <li class="nav-item {{ active_class(['/']) }}">
-    <a class="nav-link" href="{{ url('/') }}">
-      <img src="{{ url('assets/images/sidenav/cash-payment.png') }}" alt="profile image" style="margin-right: 10px;">
-      <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Payment</span>
-    </a>
+        <img src="{{ url('assets/images/sidenav/profile.png') }}" alt="profile image" style="margin-right: 10px;">
+        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Accounts</span>
+      </a>
+    </li>
+    <li class="nav-item {{ active_class(['/']) }}">
+      <a class="nav-link" href="{{ url('/') }}">
+        <img src="{{ url('assets/images/sidenav/cash-payment.png') }}" alt="profile image" style="margin-right: 10px;">
+        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Payment</span>
+      </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
@@ -121,7 +151,7 @@
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Report</span>
       </a>
     </li>
-    
+
     <li class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link" href="{{ url('/charts/chartjs') }}">
         <img src="{{ url('assets/images/sidenav/pie-chart.png') }}" alt="profile image" style="margin-right: 10px;">
@@ -136,13 +166,13 @@
     </li>
 
     <!-- No Need -->
-    <li class="nav-item {{ active_class(['icons/material']) }}">
+    <!-- <li class="nav-item {{ active_class(['icons/material']) }}">
       <a class="nav-link" href="{{ url('/icons/material') }}">
         <i class="menu-icon mdi mdi-emoticon"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Icons</span>
       </a>
-    </li>
-    <li class="nav-item {{ active_class(['user-pages/*']) }}">
+    </li> -->
+    <!-- <li class="nav-item {{ active_class(['user-pages/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#user-pages" aria-expanded="{{ is_active_route(['user-pages/*']) }}" aria-controls="user-pages">
         <i class="menu-icon mdi mdi-lock-outline"></i>
         <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">User Pages</span>
@@ -161,6 +191,6 @@
           </li>
         </ul>
       </div>
-    </li>
+    </li> -->
   </ul>
 </nav>

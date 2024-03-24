@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PosPurchaseAdd extends Model
 {
-    protected $table = 'purchase_Add';
+    protected $table = 'purchase_add';
     protected $fillable = [
         'user_id',
         'category',

@@ -236,20 +236,17 @@
 
 
 <div class="tab-content" id="tabContent2">
-    <div style="margin-bottom: 20px;display: flex;">
-        <label for="categoryFilter">Filter by Category:</label>
-        <select id="categoryFilter">
-            <option value="">All Categories</option>
-
-        </select>
-    </div>
     <div class="modern-table" style="margin-top: 20px;border: 1px solid;">
-        <table id="brandTable">
+        <table id="descriptionTable">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Category</th>
                     <th>Brand</th>
+                    <th>Description</th>
+                    <th>Sale Price</th>
+                    <th>MRP</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -258,7 +255,17 @@
             </tbody>
         </table>
     </div>
+
 </div>
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@elseif(session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
 
 
 
@@ -283,7 +290,7 @@
         selectedTab.classList.add("active");
 
         if (tabNumber === 2) {
-            fetchCategoryData();
+            fetchDescriptionData();
         }
     }
 
@@ -324,6 +331,29 @@
                 .catch(error => console.error('Error fetching brands:', error));
         }
 
+        function fetchDescriptionData() {
+            fetch("{{ route('admin.description.data') }}")
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.querySelector('#descriptionTable tbody');
+                    tbody.innerHTML = ''; // Clear existing data
+                    data.forEach(row => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${row.id}</td>
+                            <td>${row.category}</td>
+                            <td>${row.brand}</td>
+                            <td>${row.description}</td>
+                            <td>${row.sale_price}</td>
+                            <td>${row.mrp}</td>
+                            <td>${row.status}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error fetching description data:', error));
+        }
+
         const descriptionForm = document.getElementById('descriptionForm');
         descriptionForm.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -334,7 +364,7 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        window.location.reload();
+                        // window.location.reload();
                     } else {
                         throw new Error('Failed to save description');
                     }
