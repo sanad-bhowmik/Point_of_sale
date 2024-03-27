@@ -2,6 +2,7 @@
 
 @push('plugin-styles')
 @endpush
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <style>
     .profile-card {
@@ -15,11 +16,38 @@
         padding: 20px;
     }
 
+    .profile-avatar-container {
+        position: relative;
+        display: inline-block;
+    }
+
     .profile-avatar {
         width: 100px;
         height: 100px;
         border-radius: 50%;
         border: 2px solid green;
+        position: relative;
+    }
+
+    .glow-ring {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        box-shadow: 0 0 10px 5px #38caef;
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        0% {
+            box-shadow: 0 0 10px 5px #FF1E1E;
+        }
+
+        100% {
+            box-shadow: 0 0 20px 10px #38caef;
+        }
     }
 
     .profile-name {
@@ -34,6 +62,7 @@
 
     .profile-details {
         padding: 20px;
+        margin-left: 15%;
     }
 
     .profile-detail {
@@ -54,73 +83,158 @@
     .btn-cancel {
         margin-right: 10px;
     }
+
+    .form__group {
+        position: relative;
+        padding: 20px 0 0;
+        width: 100%;
+        max-width: 180px;
+    }
+
+    .form__field {
+        font-family: inherit;
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #9b9b9b;
+        outline: 0;
+        font-size: 17px;
+        color: black;
+        padding: 7px 0;
+        background: transparent;
+        transition: border-color 0.2s;
+    }
+
+    .form__field::placeholder {
+        color: transparent;
+    }
+
+    .form__field:placeholder-shown~.form__label {
+        font-size: 17px;
+        cursor: text;
+        top: 20px;
+    }
+
+    .form__label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 17px;
+        color: #D6DAC8;
+        pointer-events: none;
+    }
+
+    .form__field:focus {
+        padding-bottom: 6px;
+        font-weight: 700;
+        border-width: 3px;
+        border-image: linear-gradient(to right, #116399, #38caef);
+        border-image-slice: 1;
+    }
+
+    .form__field:focus~.form__label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 17px;
+        color: #38caef;
+        font-weight: 700;
+    }
+
+    /* reset input */
+    .form__field:required,
+    .form__field:invalid {
+        box-shadow: none;
+    }
 </style>
 @section('content')
 
-<div class="tab-content active" id="tabContent1">
-    <div class="card profile-card">
-        <div class="card-body">
-            <div class="profile-header">
-                <img src="https://img.freepik.com/premium-photo/illustration-cute-boy-avatar-graphic-white-background-created-with-generative-ai-technology_67092-4584.jpg" alt="User Avatar" class="profile-avatar">
-                <h5 class="profile-name">{{ Auth::user()->name }}</h5>
-                <p class="profile-email">{{ Auth::user()->email }}</p>
-                <hr>
-            </div>
-            <div class="profile-details">
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="profile-detail">
-                            <label for="inputUsername">Username:</label>
-                            <input type="text" class="form-control" id="inputUsername" value="{{ Auth::user()->username }}">
+
+
+@if(Auth::check())
+<form method="POST" id="profileForm" action="{{ route('updateProfile') }}">
+    {{ csrf_field() }}
+    <div class="tab-content active" id="tabContent1">
+        <div class="card profile-card">
+            <div class="card-body">
+                <div class="profile-header">
+                    <div class="profile-avatar-container">
+                        <div class="profile-avatar">
+                            <div class="glow-ring"></div>
+                            <img src="https://img.freepik.com/premium-photo/illustration-cute-boy-avatar-graphic-white-background-created-with-generative-ai-technology_67092-4584.jpg" alt="User Avatar" class="profile-avatar">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="profile-detail">
-                            <label for="inputEmail">Email:</label>
-                            <input type="email" class="form-control" id="inputEmail" value="{{ Auth::user()->email }}">
-                        </div>
-                    </div>
+                    <h5 class="profile-name">{{ Auth::user()->name }}</h5>
+                    <p style="height: 1px;background: green;width: 70px;border-radius: 3px;margin-left: 46%;margin-top: -5px;"></p>
+                    <p class="profile-email">{{ Auth::user()->shop }}</p>
+                    <hr>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="profile-detail">
-                            <label for="inputPassword">Password:</label>
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Enter new password">
+                <div class="profile-details">
+                    <div class="row mb-3">
+
+                        <div class="col-md-6">
+                            <div class="form__group field">
+                                <input type="input" class="form__field" placeholder="Name" name="username" id="inputUsername" name="username" value="{{ Auth::user()->username }}" style="width: 140%;">
+                                <label for="name" class="form__label" style="">Username :</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form__group field">
+                                <input type="email" class="form__field" placeholder="Name" name="email" id="inputUsername" value="{{ Auth::user()->email }}" style="width: 138%;">
+                                <label for="name" class="form__label" style="">Email :</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="profile-detail">
-                            <label for="inputConfirmPassword">Confirm Password:</label>
-                            <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm new password">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form__group field">
+                                <input type="password" class="form__field" placeholder="Password" name="password" id="inputUsername" value="" style="width: 140%;">
+                                <label for="name" class="form__label" style="">Password :</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form__group field">
+                                <input type="password" class="form__field" placeholder="Confirm Password" id="inputUsername" value="" style="width: 138%;">
+                                <label for="name" class="form__label">Confirm Password :</label>
+                            </div>
                         </div>
                     </div>
+                    <div class="row mb-3" style="display: none;">
+                        <div class="col-md-6">
+                            <div class="form__group field">
+                                <input type="text" class="form__field" placeholder="Name" required="" name="name" value="{{ Auth::user()->name }}" style="width: 140%;">
+                                <label for="name" class="form__label" style="">Username :</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form__group field">
+                                <input type="input" class="form__field" placeholder="Address" name="address" id="inputUsername" value="{{ Auth::user()->address }}" style="width: 140%;">
+                                <label for="name" class="form__label">Address :</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form__group field">
+                                <input type="input" class="form__field" placeholder="Phone" name="phone" id="inputUsername" value="{{ Auth::user()->phone }}" style="width: 140%;">
+                                <label for="name" class="form__label">Mobile :</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more fields here -->
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="profile-detail">
-                            <label for="inputAddress">Address:</label>
-                            <input type="text" class="form-control" id="inputAddress" value="{{ Auth::user()->address }}">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-detail">
-                            <label for="inputPhone">Phone:</label>
-                            <input type="text" class="form-control" id="inputPhone" value="{{ Auth::user()->phone }}">
-                        </div>
-                    </div>
+                <div class="profile-actions">
+                    <button class="btn btn-success btn-save">Save</button>
                 </div>
-                <!-- Add more fields here -->
-            </div>
-            <div class="profile-actions">
-                <button class="btn btn-primary btn-edit">Edit Profile</button>
-                <button class="btn btn-success btn-save d-none">Save</button>
-                <button class="btn btn-secondary btn-cancel d-none">Cancel</button>
             </div>
         </div>
     </div>
-</div>
+</form>
 
-
+@else
+{{ redirect('/') }}
+@endif
 @endsection
 
 @push('plugin-scripts')
@@ -131,6 +245,22 @@
 @push('custom-scripts')
 {!! Html::script('/assets/js/dashboard.js') !!}
 @endpush
+<script>
+    $(document).ready(function() {
+        $('#inputConfirmPassword').on('keyup', function() {
+            var newPassword = $('#inputNewPassword').val();
+            var confirmPassword = $(this).val();
+
+            if (newPassword === confirmPassword) {
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+            } else {
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+            }
+        });
+    });
+</script>
 
 @push('custom-scripts')
 

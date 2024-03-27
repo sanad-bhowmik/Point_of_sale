@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Expense extends Model
+class PaymentDeleteHistory extends Model
 {
-    protected $table = 'expense';
+
+    protected $table = 'payment_delete_history';
+
     protected $fillable = [
         'user_id',
-        'purpose',
+        'supplier',
+        'reference_no',
         'amount',
         'remarks',
         'status',

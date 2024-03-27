@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SupplierDueReport extends Model
 {
-    use HasFactory;
 
     protected $table = 'supplier_due_report';
 

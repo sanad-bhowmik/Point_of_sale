@@ -3,6 +3,11 @@
 @push('plugin-styles')
 @endpush
 <style>
+    .totals {
+        display: flex;
+        gap: 30px;
+    }
+
     .form-group {
         margin-bottom: 20px;
     }
@@ -70,7 +75,7 @@
         font-family: normal;
         font-style: normal;
         font-weight: 400;
-        font-size: 121%;
+        font-size: 93%;
         line-height: 28px;
         text-align: center;
         letter-spacing: -0.001em;
@@ -223,52 +228,48 @@
 
 @section('content')
 <div class="tab-container">
-    <div class="tab active" id="tab1" onclick="switchTab(1)" style="display: none;">Acc Journal</div>
+    <div class="tab active" id="tab1" onclick="switchTab(1)">Add Investment</div>
+    <div class="tab " id="tab2" onclick="switchTab(2)">Investment List</div>
+    <div class="tab " id="tab3" onclick="switchTab(3)">Cash Transfer to bank</div>
+    <div class="tab " id="tab4" onclick="switchTab(4)">Withdraw From Business</div>
 </div>
 
+
 <div class="tab-content active" id="tabContent1">
-    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">LEDGER</h3>
+    <h1>hello2</h1>
+</div>
+
+
+<div class="tab-content" id="tabContent2">
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Investment List</h3>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <button class="button " id="downloadBtn" title="Download" onclick="downloadPDF()">
-                    <p class="text">
-                        Download PDF
-                    </p>
-                    <div class="svg">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-download" viewBox="0 0 16 16">
-                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
-                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
-                        </svg>
-                    </div>
-                </button>
                 <div class="table-responsive">
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>SI No</th>
                                 <th>Date</th>
-                                <th>Particular</th>
                                 <th>Reference No</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                                <th>Balance</th>
-                                <th>Narration</th>
-                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Remarks</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($accLedgerData as $ledger)
+                            @foreach($investments as $investment)
                             <tr>
-                                <td>{{ $ledger->id }}</td>
-                                <td>{{ $ledger->date }}</td>
-                                <td>{{ $ledger->particular }}</td>
-                                <td>{{ $ledger->reference_no }}</td>
-                                <td>{{ $ledger->debit }}</td>
-                                <td>{{ $ledger->credit }}</td>
-                                <td>{{ $ledger->balance }}</td>
-                                <td>{{ $ledger->narration }}</td>
-                                <td>{{ $ledger->status }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $investment->created_at }}</td>
+                                <td>{{ $investment->account_no }}</td>
+                                <td>{{ $investment->amount }}</td>
+                                <td>{{ $investment->remarks }}</td>
+                                <td title="Delete">
+                                    <button type="submit" style="background: transparent; border: none;">
+                                        <img src="{{ url('assets/images/tr.gif') }}" alt="Delete" style="height: 30px; width: 30px;">
+                                    </button>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -278,55 +279,74 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="tab-content" id="tabContent3">
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Payment Delete History</h3>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>SI no</th>
+                                <th>Date</th>
+                                <th>Supplier</th>
+                                <th>Reference No</th>
+                                <th>Amount</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="tab-content" id="tabContent4">
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Supplier Due Report</h3>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group" style="margin-bottom: 2rem; display:flex;gap:9px;">
+                    <label for="categoryName">Supplier:</label>
+                    <br>
+                    <select id="categoryName" name="categoryName" required style="padding: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;">
+                        <option value="" selected>Select Supplier</option>
+
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Si</th>
+                                <th>Supplier</th>
+                                <th>Total Purchase</th>
+                                <th>Total Purchase Return</th>
+                                <th>Total Purchase Amendment</th>
+                                <th>Total Payment</th>
+                                <th>Due</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-<script>
-    function downloadPDF() {
-        var title = "Accounts Ledger For Rifat Store";
-        var currentDate = new Date().toLocaleDateString();
-
-        var titleDiv = document.createElement('div');
-        titleDiv.innerHTML = `<h4 style="text-align: center;">${title}</h4><p style="text-align: right;">Date: ${currentDate}</p>`;
-
-        var table = document.querySelector('.table');
-
-        table.style.color = 'black';
-        table.style.border = '1px solid';
-        table.style.width = '31px';
-        table.style.backgroundColor = 'transparent';
-
-        var debitTotal = 0;
-        var creditTotal = 0;
-        var rows = table.querySelectorAll('tbody tr');
-        rows.forEach(row => {
-            debitTotal += parseFloat(row.cells[4].innerText);
-            creditTotal += parseFloat(row.cells[5].innerText);
-        });
-
-        var totalsRow = document.createElement('tr');
-        totalsRow.innerHTML = `<td colspan="4">Total: </td><td>${debitTotal}</td><td>${creditTotal}</td><td colspan="3"></td>`;
-        var totalsContainer = document.createElement('tbody');
-        totalsContainer.appendChild(totalsRow);
-
-        var tbody = table.querySelector('tbody');
-        tbody.appendChild(totalsRow);
-
-        var container = document.createElement('div');
-        container.style.padding = '20px';
-        container.style.paddingRight = '40px';
-        container.appendChild(titleDiv);
-        container.appendChild(table.cloneNode(true));
-
-        html2pdf()
-            .from(container)
-            .save('table.pdf')
-            .then(() => {
-                window.location.reload();
-            });
-    }
-</script>
-
 
 <script>
     function switchTab(tabNumber) {

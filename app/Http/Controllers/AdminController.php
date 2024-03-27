@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccLedger;
+use App\Models\Expense;
+use App\Models\Investment;
+use App\Models\PaymentDeleteHistory;
 use App\Models\PosAccJournalReport;
+use App\Models\PosBankDetail;
 use App\Models\PosCustomer;
 use App\Models\PosStockReport;
 use App\Models\PosStockSummary;
 use App\Models\PurchaseDetail;
 use App\Models\ShopInfo;
+use App\Models\SupplierDueReport;
+use App\Models\SupplierPaymentHistory;
+use App\Models\SupplierTransaction;
 use App\Models\User;
 use App\PosAddSupplier;
 use App\PosBrand;
@@ -28,10 +35,113 @@ class AdminController extends Controller
 {
     // All View Down Here //
 
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([]);
+
+        $user = Auth::user();
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->address = $request->input('address');
+        $user->phone = $request->input('phone');
+
+        $user->save();
+
+        return redirect()->route('manageAccount')->with('success', 'Profile updated successfully');
+    }
+
+
     public function showCategoryView()
     {
         return view('category');
     }
+
+
+    public function showInvestmentView()
+    {
+        $investments = Investment::all();
+        return view('investment', compact('investments'));
+    }
+
+    public function showbankinfo()
+    {
+        $bankDetails = PosBankDetail::all();
+        return view('bankInfo', ['bankDetails' => $bankDetails]);
+    }
+
+    public function saveBankInfo(Request $request)
+    {
+        $request->validate([
+            'bankName' => 'required|string',
+            'acno' => 'required|numeric',
+            'status' => 'required|string|in:Active,Inactive',
+        ]);
+
+        $bankDetail = new PosBankDetail();
+        $bankDetail->name = $request->input('bankName');
+        $bankDetail->account_no = $request->input('acno');
+        $bankDetail->status = $request->input('status');
+
+        $bankDetail->save();
+
+        return redirect()->back()->with('success', 'Bank details saved successfully.');
+    }
+
+    public function showExpenseView()
+    {
+        $expenses = Expense::all();
+
+        return view('expense', ['expenses' => $expenses]);
+    }
+
+
+    public function showSupplierPaymentView()
+    {
+        $supplierPaymentHistory = SupplierPaymentHistory::all();
+        $paymentDeleteHistory = PaymentDeleteHistory::all();
+        $supplierDueReport = SupplierDueReport::all();
+        $supplierTransaction = SupplierTransaction::all();
+        $suppliers = PosAddSupplier::pluck('name', 'id');
+
+        // Calculate total quantity and total amount
+        $totalQty = $supplierTransaction->sum('total_qty');
+        $totalAmount = $supplierTransaction->sum('total_amount');
+
+        return view('supplierPayment', [
+            'supplierPaymentHistory' => $supplierPaymentHistory,
+            'paymentDeleteHistory' => $paymentDeleteHistory,
+            'supplierDueReport' => $supplierDueReport,
+            'supplierTransaction' => $supplierTransaction,
+            'suppliers' => $suppliers,
+            'totalQty' => $totalQty,
+            'totalAmount' => $totalAmount,
+        ]);
+    }
+
+
+
+
+    public function deleteSupplierPayment($id)
+    {
+        $supplierPayment = SupplierPaymentHistory::findOrFail($id);
+
+        PaymentDeleteHistory::create([
+            'user_id' => $supplierPayment->user_id,
+            'supplier' => $supplierPayment->supplier,
+            'reference_no' => $supplierPayment->reference_no,
+            'amount' => $supplierPayment->amount,
+            'remarks' => $supplierPayment->remarks,
+            'status' => $supplierPayment->status,
+        ]);
+
+        $supplierPayment->delete();
+
+        return redirect()->route('supplierPayment')->with('success', 'Supplier payment deleted successfully.');
+    }
+
     public function manageAccount()
     {
         return view('manageAccount');

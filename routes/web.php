@@ -20,6 +20,8 @@ Route::get('/home', function () {
 
 // ----------------------Admin Controller------------------------//
 Route::get('/manageAccount', 'AdminController@manageAccount')->name('manageAccount');
+Route::post('/update-profile', 'AdminController@updateProfile')->name('updateProfile');
+
 
 Route::get('/category', 'AdminController@showCategoryView')->name('admin.category');
 Route::post('/category/store', 'AdminController@storeCategory')->name('admin.category.store');
@@ -62,6 +64,22 @@ Route::get('/stockModule', 'AdminController@showStockModule')->name('stockModule
 
 Route::get('/accJournal', 'AdminController@showAccJournalView')->name('accJournal');
 Route::get('/accLedger', 'AdminController@showAccLedgerView')->name('accLedger');
+
+
+Route::get('/supplierPayment', 'AdminController@showSupplierPaymentView')->name('supplierPayment');
+Route::get('/supplierPayment', 'AdminController@showSupplierPaymentView')->name('supplierPayment');
+Route::post('/supplierPayment/delete/{id}', 'AdminController@deleteSupplierPayment')->name('supplierPayment.delete');
+Route::delete('/supplierPayment/delete/{id}', 'AdminController@deleteSupplierPayment')->name('supplierPayment.delete');
+
+
+Route::get('/expense', 'AdminController@showExpenseView')->name('expense');
+
+Route::get('/bankInfo', 'AdminController@showbankinfo')->name('bankInfo');
+Route::post('/saveBankInfo', 'AdminController@saveBankInfo')->name('saveBankInfo');
+
+Route::get('/investment', 'AdminController@showInvestmentView')->name('investment');
+
+
 
 
 // ----------------------Admin Controller------------------------//

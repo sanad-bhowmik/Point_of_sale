@@ -165,7 +165,7 @@
           <span class="menu-title">Acc_Journal</span>
         </a>
       </div>
-      
+
       <div class="collapse" id="accountSubMenu">
         <a class="nav-link {{ active_class(['accLedger']) }}" href="{{ route('accLedger') }}">
           <img src="{{ url('assets/images/sidenav/annual-report.png') }}" alt="profile image" style="margin-right: 10px;">
@@ -173,12 +173,48 @@
         </a>
       </div>
     </li>
+    <!-- Account -->
+
+
+    <!-- Payment -->
     <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
-        <img src="{{ url('assets/images/sidenav/cash-payment.png') }}" alt="profile image" style="margin-right: 10px;">
+      <a class="nav-link" data-toggle="collapse" href="#paymentSubMenu" aria-expanded="false" aria-controls="paymentSubMenu">
+        <img src="{{ url('assets/images/sidenav/payment.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Payment</span>
+        <i class="menu-arrow"></i>
       </a>
+
+      <div class="collapse" id="paymentSubMenu">
+        <a class="nav-link {{ active_class(['supplierPayment']) }}" href="{{ route('supplierPayment') }}">
+          <img src="{{ url('assets/images/sidenav/debit-card.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Supplier Payment</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="paymentSubMenu">
+        <a class="nav-link {{ active_class(['expense']) }}" href="{{ route('expense') }}">
+          <img src="{{ url('assets/images/sidenav/expense.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Expense</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="paymentSubMenu">
+        <a class="nav-link {{ active_class(['bankInfo']) }}" href="{{ route('bankInfo') }}">
+          <img src="{{ url('assets/images/sidenav/bank.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Bank Info</span>
+        </a>
+      </div>
+      
+      <div class="collapse" id="paymentSubMenu">
+        <a class="nav-link {{ active_class(['investment']) }}" href="{{ route('investment') }}">
+          <img src="{{ url('assets/images/sidenav/investment.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Investment</span>
+        </a>
+      </div>
     </li>
+    <!-- Payment -->
+
+
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
         <img src="{{ url('assets/images/sidenav/report.png') }}" alt="profile image" style="margin-right: 10px;">

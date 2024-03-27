@@ -203,7 +203,7 @@
 
 
 <div class="tab-container">
-    <div class="tab active" id="tab1" onclick="switchTab(1)">Stock Summary</div>
+    <div class="tab active" id="tab1" onclick="switchTab(1)" style="display: none;">Stock Summary</div>
 </div>
 
 <div class="tab-content active" id="tabContent1">
