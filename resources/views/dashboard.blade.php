@@ -314,7 +314,17 @@
   </div>
 
 </div>
-
+<div class="col-md-12 grid-margin">
+  <div class="card">
+    <div class="p-4 border-bottom bg-light">
+      <h4 class="card-title mb-0">Mixed Chart</h4>
+    </div>
+    <div class="card-body">
+      <canvas id="mixed-chart" height="100"></canvas>
+      <div class="mr-5" id="mixed-chart-legend"></div>
+    </div>
+  </div>
+</div>
 
 @endsection
 
@@ -325,4 +335,7 @@
 
 @push('custom-scripts')
 {!! Html::script('/assets/js/dashboard.js') !!}
+@endpush
+@push('custom-scripts')
+  {!! Html::script('/assets/js/chart.js') !!}
 @endpush

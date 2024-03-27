@@ -19,6 +19,7 @@ Route::get('/home', function () {
 
 
 // ----------------------Admin Controller------------------------//
+Route::get('/manageAccount', 'AdminController@manageAccount')->name('manageAccount');
 
 Route::get('/category', 'AdminController@showCategoryView')->name('admin.category');
 Route::post('/category/store', 'AdminController@storeCategory')->name('admin.category.store');
@@ -57,6 +58,11 @@ Route::post('/mrp-adjustment', 'PurchaseDetailController@mrpAdjustment')->name('
 
 Route::get('/stockSummery', 'AdminController@showStockSummery')->name('stockSummery');
 Route::get('/stockModule', 'AdminController@showStockModule')->name('stockModule');
+
+
+Route::get('/accJournal', 'AdminController@showAccJournalView')->name('accJournal');
+Route::get('/accLedger', 'AdminController@showAccLedgerView')->name('accLedger');
+
 
 // ----------------------Admin Controller------------------------//
 

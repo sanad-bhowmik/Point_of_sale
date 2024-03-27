@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccLedger;
+use App\Models\PosAccJournalReport;
 use App\Models\PosCustomer;
 use App\Models\PosStockReport;
 use App\Models\PosStockSummary;
@@ -19,7 +21,8 @@ use App\PosShopListStatus;
 use App\PosUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class AdminController extends Controller
 {
@@ -28,6 +31,23 @@ class AdminController extends Controller
     public function showCategoryView()
     {
         return view('category');
+    }
+    public function manageAccount()
+    {
+        return view('manageAccount');
+    }
+
+    public function showAccLedgerView()
+    {
+        $accLedgerData = AccLedger::all();
+
+        return view('accLedger', ['accLedgerData' => $accLedgerData]);
+    }
+
+    public function showAccJournalView()
+    {
+        $accJournalData = PosAccJournalReport::all();
+        return view('accJournal', ['accJournalData' => $accJournalData]);
     }
 
     public function showStockModule()
@@ -42,8 +62,6 @@ class AdminController extends Controller
 
         return view('stockModule', compact('stockReports', 'totalQty', 'categories', 'brands', 'descriptions', 'purchaseLists'));
     }
-
-
 
 
     public function showStockSummery()

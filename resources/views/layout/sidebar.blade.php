@@ -43,14 +43,14 @@
     <li class="nav-item {{ active_class(['/home']) }}">
       <a class="nav-link" href="{{ url('/home') }}">
         <img src="{{ url('assets/images/sidenav/dashboard.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Dashboard</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Dashboard</span>
       </a>
     </li>
     <!-- Admin -->
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#adminSubMenu" aria-expanded="false" aria-controls="adminSubMenu">
         <img src="{{ url('assets/images/sidenav/protection.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Admin</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Admin</span>
         <i class="menu-arrow"></i>
       </a>
 
@@ -115,7 +115,7 @@
     <li class="nav-item {{ active_class(['/purchase']) }}">
       <a class="nav-link" href="{{ url('/purchase') }}">
         <img src="{{ url('assets/images/sidenav/shopping-cart.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Purchase</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Purchase</span>
       </a>
     </li>
 
@@ -124,7 +124,7 @@
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
         <img src="{{ url('assets/images/sidenav/graph.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Sales</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Sales</span>
       </a>
     </li>
 
@@ -132,7 +132,7 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#stockSubMenu" aria-expanded="false" aria-controls="stockSubMenu">
         <img src="{{ url('assets/images/sidenav/in-stock.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Stock</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Stock</span>
         <i class="menu-arrow"></i>
       </a>
 
@@ -152,35 +152,50 @@
     </li>
     <!-- Stock -->
 
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
-        <img src="{{ url('assets/images/sidenav/profile.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Accounts</span>
+    <li class="nav-item ">
+      <a class="nav-link" data-toggle="collapse" href="#accountSubMenu" aria-expanded="false" aria-controls="accountSubMenu">
+        <img src="{{ url('assets/images/sidenav/verified-account.png') }}" alt="profile image" style="margin-right: 10px;">
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Accounts</span>
+        <i class="menu-arrow"></i>
       </a>
+
+      <div class="collapse" id="accountSubMenu">
+        <a class="nav-link {{ active_class(['accJournal']) }}" href="{{ route('accJournal') }}">
+          <img src="{{ url('assets/images/sidenav/journal.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Acc_Journal</span>
+        </a>
+      </div>
+      
+      <div class="collapse" id="accountSubMenu">
+        <a class="nav-link {{ active_class(['accLedger']) }}" href="{{ route('accLedger') }}">
+          <img src="{{ url('assets/images/sidenav/annual-report.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Acc_Ledger</span>
+        </a>
+      </div>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
         <img src="{{ url('assets/images/sidenav/cash-payment.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Payment</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Payment</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['/']) }}">
       <a class="nav-link" href="{{ url('/') }}">
         <img src="{{ url('assets/images/sidenav/report.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Report</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Report</span>
       </a>
     </li>
 
     <li class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link" href="{{ url('/charts/chartjs') }}">
         <img src="{{ url('assets/images/sidenav/pie-chart.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Charts</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Charts</span>
       </a>
     </li>
     <li class="nav-item {{ active_class(['tables/basic-table']) }}">
       <a class="nav-link" href="{{ url('/tables/basic-table') }}">
         <img src="{{ url('assets/images/sidenav/frequency.png') }}" alt="profile image" style="margin-right: 10px;">
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Tables</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Tables</span>
       </a>
     </li>
 
@@ -188,13 +203,13 @@
     <!-- <li class="nav-item {{ active_class(['icons/material']) }}">
       <a class="nav-link" href="{{ url('/icons/material') }}">
         <i class="menu-icon mdi mdi-emoticon"></i>
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">Icons</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Icons</span>
       </a>
     </li> -->
     <!-- <li class="nav-item {{ active_class(['user-pages/*']) }}">
       <a class="nav-link" data-toggle="collapse" href="#user-pages" aria-expanded="{{ is_active_route(['user-pages/*']) }}" aria-controls="user-pages">
         <i class="menu-icon mdi mdi-lock-outline"></i>
-        <span class="menu-title" style="color: #1e3d59;font-size: 103%;font-family: sans-serif;font-weight: bold;">User Pages</span>
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">User Pages</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse {{ show_class(['user-pages/*']) }}" id="user-pages">

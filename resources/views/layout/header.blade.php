@@ -12,13 +12,6 @@
       <span class="mdi mdi-menu"></span>
     </button>
 
-    <ul class="navbar-nav navbar-nav-left header-links">
-      <li class="nav-item d-none d-lg-flex">
-        <a href="#" class="nav-link">
-          <i class="mdi mdi-elevation-rise"></i>Reports</a>
-      </li>
-    </ul>
-
     <!-- Display current time and date here -->
     <div id="currentDateTime" class="ml-auto text-white"></div>
 
@@ -30,9 +23,9 @@
           <img class="img-xs rounded-circle" src="https://media2.giphy.com/avatars/Quillustration/6xXKKQCvUcMA.png" alt="Profile image">
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-          <a class="dropdown-item mt-2" href="#">Manage Accounts</a>
+          <a class="dropdown-item mt-2" href="{{ route('manageAccount') }}">Manage Accounts</a>
           <a class="dropdown-item" href="#">Change Password</a>
-          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ url('assets/images/exit.png') }}" alt="logo" />   Sign Out</a>
+          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ url('assets/images/exit.png') }}" alt="logo" /> Sign Out</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
           </form>
