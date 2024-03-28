@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PosInvoice extends Model
@@ -16,5 +15,4 @@ class PosInvoice extends Model
         'remarks',
         'drop_status',
     ];
-    use HasFactory;
 }

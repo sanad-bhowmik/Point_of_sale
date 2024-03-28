@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PosAdjustCreditSale extends Model
@@ -17,7 +16,7 @@ class PosAdjustCreditSale extends Model
         'paid_amount',
         'due',
         'pay',
+        'invoice_date',
     ];
     
-    use HasFactory;
 }

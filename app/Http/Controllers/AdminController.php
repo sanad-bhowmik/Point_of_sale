@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccLedger;
+use App\Models\CommissionJournal;
 use App\Models\Expense;
 use App\Models\Investment;
 use App\Models\PaymentDeleteHistory;
 use App\Models\PosAccJournalReport;
+use App\Models\PosAdjustCreditSale;
 use App\Models\PosBankDetail;
 use App\Models\PosCustomer;
+use App\Models\PosInvoice;
 use App\Models\PosStockReport;
 use App\Models\PosStockSummary;
 use App\Models\PurchaseDetail;
@@ -24,8 +27,10 @@ use App\PosCostingHead;
 use App\PosDescription;
 use App\PosPurchaseAdd;
 use App\PosPurchaseList;
+use App\PosSalesReturn;
 use App\PosShopListStatus;
 use App\PosUser;
+use App\SalesCustomer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Dompdf\Dompdf;
@@ -59,6 +64,81 @@ class AdminController extends Controller
         return view('category');
     }
 
+    public function showSalesReturn()
+    {
+        return view('salesReturn');
+    }
+
+    public function showSalesCustomer()
+    {
+        return view('salesCustomer');
+    }
+
+    public function storeSalesCustomer(Request $request)
+    {
+        $validatedData = $request->validate([
+            'customerName' => 'required|string',
+            'number' => 'required|string',
+        ]);
+
+        $salesCustomer = new SalesCustomer();
+
+        $salesCustomer->name = $request->input('customerName');
+        $salesCustomer->number = $request->input('number');
+
+        $salesCustomer->save();
+
+        return redirect()->back()->with('success', 'Sales customer added successfully.');
+    }
+
+    public function showCommissionJournal()
+    {
+        $suppliers = PosAddSupplier::all();
+        return view('comissionJournal', ['suppliers' => $suppliers]);
+    }
+
+    public function showAdjustCredit()
+    {
+        $adjustCreditSales = PosAdjustCreditSale::all();
+        return view('adjustCreditSale', ['adjustCreditSales' => $adjustCreditSales]);
+    }
+
+    public function updatePay(Request $request, $id)
+    {
+        $request->validate([
+            'pay' => 'required|numeric',
+        ]);
+
+        $adjustCreditSale = PosAdjustCreditSale::findOrFail($id);
+
+        $adjustCreditSale->pay = $request->input('pay');
+        $adjustCreditSale->save();
+
+        return response()->json(['message' => 'Pay value updated successfully'], 200);
+    }
+
+    public function showSearchInvoice()
+    {
+        $invoices = PosInvoice::all();
+        return view('searchInvoice', ['invoices' => $invoices]);
+    }
+
+    public function storeSalesReturn(Request $request)
+    {
+        $validatedData = $request->validate([
+            'invoiceNo' => 'required',
+            'reason' => 'required',
+        ]);
+
+        $salesReturn = new PosSalesReturn();
+        $salesReturn->invoice_num = $validatedData['invoiceNo'];
+        $salesReturn->reason = $validatedData['reason'];
+        $salesReturn->user_id = 108;
+
+        $salesReturn->save();
+
+        return redirect()->back()->with('success', 'Sales return saved successfully!');
+    }
 
     public function showInvestmentView()
     {

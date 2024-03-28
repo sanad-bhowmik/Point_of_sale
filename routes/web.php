@@ -79,9 +79,21 @@ Route::post('/saveBankInfo', 'AdminController@saveBankInfo')->name('saveBankInfo
 
 Route::get('/investment', 'AdminController@showInvestmentView')->name('investment');
 
+Route::get('/salesReturn', 'AdminController@showSalesReturn')->name('salesReturn');
+Route::post('/salesReturn', 'AdminController@storeSalesReturn')->name('salesReturn.store');
+
+Route::get('/searchInvoice', 'AdminController@showSearchInvoice')->name('searchInvoice');
+
+Route::get('/adjustCreditSale', 'AdminController@showAdjustCredit')->name('adjustCreditSale');
+Route::post('/adjustCreditSale/updatePay/{id}', [AdminController::class, 'updatePay'])->name('adjustCreditSale.updatePay');
 
 
+Route::get('/comissionJournal', 'AdminController@showCommissionJournal')->name('comissionJournal');
+Route::post('/comissionJournal/store', 'AdminController@storeCommissionJournal')->name('storeCommissionJournal');
 
+
+Route::get('/salesCustomer', 'AdminController@showSalesCustomer')->name('salesCustomer');
+Route::post('/salesCustomer', 'AdminController@storeSalesCustomer')->name('storeSalesCustomer');
 // ----------------------Admin Controller------------------------//
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');

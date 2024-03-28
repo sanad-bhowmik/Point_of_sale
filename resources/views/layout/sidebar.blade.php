@@ -120,13 +120,58 @@
     </li>
 
 
-
+    <!-- Sales -->
     <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
+      <a class="nav-link" data-toggle="collapse" href="#salesSubMenu" aria-expanded="false" aria-controls="salesSubMenu">
         <img src="{{ url('assets/images/sidenav/graph.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Sales</span>
+        <i class="menu-arrow"></i>
       </a>
+
+      <div class="collapse" id="salesSubMenu">
+        <a class="nav-link {{ active_class(['stockSummery']) }}" href="{{ route('stockSummery') }}">
+          <img src="{{ url('assets/images/sidenav/psale.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Product Sales</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="salesSubMenu">
+        <a class="nav-link {{ active_class(['salesReturn']) }}" href="{{ route('salesReturn') }}">
+          <img src="{{ url('assets/images/sidenav/salesReturn.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Sales Return</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="salesSubMenu">
+        <a class="nav-link {{ active_class(['searchInvoice']) }}" href="{{ route('searchInvoice') }}">
+          <img src="{{ url('assets/images/sidenav/search.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Search Invoice</span>
+        </a>
+      </div>
+
+
+      <div class="collapse" id="salesSubMenu">
+        <a class="nav-link {{ active_class(['adjustCreditSale']) }}" href="{{ route('adjustCreditSale') }}">
+          <img src="{{ url('assets/images/sidenav/adjust.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Adjust On Credit</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="salesSubMenu">
+        <a class="nav-link {{ active_class(['comissionJournal']) }}" href="{{ route('comissionJournal') }}">
+          <img src="{{ url('assets/images/sidenav/commission.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Commission Journal</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="salesSubMenu">
+        <a class="nav-link {{ active_class(['salesCustomer']) }}" href="{{ route('salesCustomer') }}">
+          <img src="{{ url('assets/images/sidenav/customer.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Customer</span>
+        </a>
+      </div>
     </li>
+    <!-- Sales -->
 
     <!-- Stock -->
     <li class="nav-item">
@@ -204,7 +249,7 @@
           <span class="menu-title">Bank Info</span>
         </a>
       </div>
-      
+
       <div class="collapse" id="paymentSubMenu">
         <a class="nav-link {{ active_class(['investment']) }}" href="{{ route('investment') }}">
           <img src="{{ url('assets/images/sidenav/investment.png') }}" alt="profile image" style="margin-right: 10px;">
