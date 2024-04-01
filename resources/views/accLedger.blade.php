@@ -320,7 +320,7 @@
 
         html2pdf()
             .from(container)
-            .save('table.pdf')
+            .save('Ledger.pdf')
             .then(() => {
                 window.location.reload();
             });

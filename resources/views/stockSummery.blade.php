@@ -121,7 +121,7 @@
         transition: opacity 0.3s ease-in-out;
         background: url(https://wallpapercave.com/wp/wp8963675.jpg);
         background-repeat: no-repeat;
-        height: 87%;
+        height: 97%;
         margin-top: 15px;
         border-radius: 10px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -207,69 +207,78 @@
 </div>
 
 <div class="tab-content active" id="tabContent1">
-    <h3 style="text-align: center;">Stock Summary</h3>
-    <p class="glow-effect"></p>
-    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-        <div>
-            <input type="text" id="searchInput" placeholder="Search...">
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Stock Summary</h3>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Stock Summary table</h4>
+                <p style="height: 3px;background: #B885E7;width: 113px;top: -0.75rem;border-radius: 3px;margin-left: 0%;margin-top: -5px;"></p>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <div style="display: flex;">
+                        <input type="text" id="searchInput" placeholder="Search...">
+                        <br>
+                        <button style="background: transparent;" onclick="clearSearchInput()">
+                            <img src="{{ url('assets/images/x.gif') }}" alt="Clear" style="height: 30px; width: 30px; border-radius: 50px;" title="Clear">
+                        </button>
+                    </div>
+                    <div>
+                        <input type="text" id="dateInput" readonly>
+                    </div>
+                </div>
+                <div class="table-responsive" style="margin-top: 20px;border: 1px solid;">
+                    <table id="invoiceTable" class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th style="font-size: 100%;">Description</th>
+                                <th style="font-size: 100%;">Category</th>
+                                <th style="font-size: 100%;">Brand</th>
+                                <th style="font-size: 100%; background-color: Violet;border: 1px solid;color :#1B1B1B;">Opening Stock Qty</th>
+                                <th style="font-size: 100%;">Purchase Qty</th>
+                                <th style="font-size: 100%;">Purchase Return Qty</th>
+                                <th style="font-size: 100%;">Sale Qty</th>
+                                <th style="font-size: 100%;">Sale Return Qty</th>
+                                <th style="font-size: 100%;">Missing Qty</th>
+                                <th style="font-size: 100%;background-color: YellowGreen;border: 1px solid;color :#1B1B1B;">Closing Stock Qty</th>
+                                <th style="font-size: 100%;background-color: Violet;border: 1px solid;color :#1B1B1B;">Opening Stock Value</th>
+                                <th style="font-size: 100%;">Purchase Value</th>
+                                <th style="font-size: 100%;">Purchase Return Value</th>
+                                <th style="font-size: 100%;">Sale Value</th>
+                                <th style="font-size: 100%;">Sale Return Value</th>
+                                <th style="font-size: 100%;">Missing Value</th>
+                                <th style="font-size: 100%;">Price Protection Value</th>
+                                <th style="font-size: 100%;background-color: YellowGreen;border: 1px solid;">Closing Stock Value</th>
+                                <th style="font-size: 100%;">Average</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($stockSummaries as $stockSummary)
+                            <tr>
+                                <td style="font-size: 100%;">{{ $stockSummary->description }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->category }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->brand }}</td>
+                                <td style="font-size: 100%;background-color: Violet;border: 1px solid;color :#1B1B1B;">{{ $stockSummary->opening_stock_qty }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->purchase_qty }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->purchase_return_qty }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->sale_qty }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->sale_return_qty }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->missing_qty }}</td>
+                                <td style="font-size: 100%;background-color: YellowGreen;border: 1px solid;color :#1B1B1B;">{{ $stockSummary->closing_stock_qty }}</td>
+                                <td style="font-size: 100%;background-color: Violet;border: 1px solid;color :#1B1B1B;">{{ $stockSummary->opening_stock_value }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->purchase_value }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->purchase_return_value }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->sale_value }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->sale_return_value }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->missing_value }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->price_protection_value }}</td>
+                                <td style="font-size: 100%;background-color: YellowGreen;border: 1px solid;">{{ $stockSummary->closing_stock_value }}</td>
+                                <td style="font-size: 100%;">{{ $stockSummary->average }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div>
-            <input type="text" id="dateInput" readonly>
-        </div>
-    </div>
-    <div class="modern-table" style="margin-top: 20px;border: 1px solid;">
-        <!-- Search and Date Input -->
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th style="font-size: 100%;">Description</th>
-                    <th style="font-size: 100%;">Category</th>
-                    <th style="font-size: 100%;">Brand</th>
-                    <th style="font-size: 100%; background-color: Violet;border: 1px solid;">Opening Stock Qty</th>
-                    <th style="font-size: 100%;">Purchase Qty</th>
-                    <th style="font-size: 100%;">Purchase Return Qty</th>
-                    <th style="font-size: 100%;">Sale Qty</th>
-                    <th style="font-size: 100%;">Sale Return Qty</th>
-                    <th style="font-size: 100%;">Missing Qty</th>
-                    <th style="font-size: 100%;background-color: YellowGreen;border: 1px solid;">Closing Stock Qty</th>
-                    <th style="font-size: 100%;background-color: Violet;border: 1px solid;">Opening Stock Value</th>
-                    <th style="font-size: 100%;">Purchase Value</th>
-                    <th style="font-size: 100%;">Purchase Return Value</th>
-                    <th style="font-size: 100%;">Sale Value</th>
-                    <th style="font-size: 100%;">Sale Return Value</th>
-                    <th style="font-size: 100%;">Missing Value</th>
-                    <th style="font-size: 100%;">Price Protection Value</th>
-                    <th style="font-size: 100%;background-color: YellowGreen;border: 1px solid;">Closing Stock Value</th>
-                    <th style="font-size: 100%;">Average</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($stockSummaries as $stockSummary)
-                <tr>
-                    <td style="font-size: 100%;">{{ $stockSummary->description }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->category }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->brand }}</td>
-                    <td style="font-size: 100%;background-color: Violet;border: 1px solid;">{{ $stockSummary->opening_stock_qty }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->purchase_qty }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->purchase_return_qty }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->sale_qty }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->sale_return_qty }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->missing_qty }}</td>
-                    <td style="font-size: 100%;background-color: YellowGreen;border: 1px solid;">{{ $stockSummary->closing_stock_qty }}</td>
-                    <td style="font-size: 100%;background-color: Violet;border: 1px solid;">{{ $stockSummary->opening_stock_value }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->purchase_value }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->purchase_return_value }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->sale_value }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->sale_return_value }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->missing_value }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->price_protection_value }}</td>
-                    <td style="font-size: 100%;background-color: YellowGreen;border: 1px solid;">{{ $stockSummary->closing_stock_value }}</td>
-                    <td style="font-size: 100%;">{{ $stockSummary->average }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
 </div>
 
@@ -339,5 +348,14 @@
             });
         });
     });
+
+    function clearSearchInput() {
+        document.getElementById('searchInput').value = '';
+        var rows = document.querySelectorAll('.modern-table tbody tr');
+
+        rows.forEach(function(row) {
+            row.style.display = '';
+        });
+    }
 </script>
 @endpush

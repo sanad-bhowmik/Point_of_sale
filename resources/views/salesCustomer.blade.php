@@ -195,7 +195,7 @@
 
 <div class="tab-container">
     <div class="tab active" id="tab1" onclick="switchTab(1)">Add Customer</div>
-    <div class="tab" id="tab1" onclick="switchTab(2)">Customer List</div>
+    <div class="tab" id="tab2" onclick="switchTab(2)">Customer List</div>
 </div>
 
 <div class="tab-content active" id="tabContent1">
@@ -231,33 +231,39 @@
 
 
 <div class="tab-content" id="tabContent2">
-    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Commission Journal Report</h3>
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Customer List</h3>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Commission Journal Report</h4>
+                <h4 class="card-title">Customer List</h4>
                 <p style="height: 3px;background: #B885E7;width: 150px;top: -0.75rem;border-radius: 3px;margin-left: 0%;margin-top: -5px;"></p>
-
                 <div class="table-responsive">
                     <table id="invoiceTable" class="table table-dark">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Invoice</th>
                                 <th>Customer Name</th>
                                 <th>Mobile</th>
-                                <th>Total Amount</th>
-                                <th>Paid Amount</th>
-                                <th>Due</th>
-                                <th>Pay</th>
-                                <th>Invoice Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($customers as $customer)
+                            <tr>
+                                <td>{{ $customer->id }}</td>
+                                <td>{{ $customer->name }}</td>
+                                <td>{{ $customer->number }}</td>
+                                <td>
+                                    <a href="#" onclick="editCustomer('{{ $customer->id }}', '{{ $customer->name }}', '{{ $customer->number }}')" style="background: transparent; border: none;">
+                                        <img src="{{ url('assets/images/edit.gif') }}" alt="Edit" style="height: 30px; width: 30px;">
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
@@ -314,6 +320,11 @@
         }, 2000);
     }
 
+    function editCustomer(id, name, number) {
+        switchTab(1);
+        document.getElementById('customerName').value = name;
+        document.getElementById('number').value = number;
+    }
     showCustomToast('✔ Successfully Add');
 </script>
 

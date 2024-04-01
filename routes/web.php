@@ -30,6 +30,8 @@ Route::get('/category/data', 'AdminController@getCategoryData')->name('admin.cat
 Route::get('/brand/data', 'AdminController@getBrandData')->name('admin.brand.data');
 Route::get('/brand', 'AdminController@showBrandView')->name('admin.brand');
 Route::post('/brand/store', 'AdminController@storeBrand')->name('admin.brand.store');
+Route::delete('/brand/delete', 'AdminController@deleteBrand')->name('admin.brand.delete');
+
 
 Route::get('/description', 'AdminController@showDescriptionView')->name('admin.description');
 Route::get('/description/data', 'AdminController@getDescriptionData')->name('admin.description.data');
@@ -41,14 +43,14 @@ Route::delete('/deleteUser/{id}', 'AdminController@deleteUser')->name('deleteUse
 
 Route::get('/supplier', 'AdminController@showSupplierView')->name('admin.supplier');
 Route::post('/supplier', 'AdminController@saveSupplier')->name('admin.supplier.save');
-Route::delete('/supplier/{id}', 'AdminController@deleteSupplier')->name('admin.supplier.delete');
+Route::delete('/supplier/delete', 'AdminController@deleteSupplier')->name('admin.supplier.delete');
 
 Route::get('/costingHead', 'AdminController@showCostingHeadView')->name('admin.costingHead');
 Route::post('/costingHead', 'AdminController@storeCostingHead')->name('admin.costingHead');
 
 Route::get('/shopLogo', 'AdminController@showShopLogoView')->name('admin.shopLogo');
 Route::post('/shopLogo', 'AdminController@storeShopLogo')->name('admin.storeShopLogo');
-Route::delete('/deleteShopLogo/{id}', 'AdminController@deleteShopLogo')->name('admin.deleteShopLogo');
+Route::delete('/admin/deleteShopLogo/{id}', 'AdminController@deleteShopLogo')->name('admin.deleteShopLogo');
 
 Route::get('/shopStatus', 'AdminController@showShopStatusView')->name('admin.shopStatus');
 Route::post('/updateShopStatus/{id}', 'AdminController@updateShopStatus')->name('admin.updateShopStatus');
@@ -56,7 +58,8 @@ Route::post('/updateShopStatus/{id}', 'AdminController@updateShopStatus')->name(
 
 Route::get('/purchase', 'AdminController@showpurchaseView')->name('purchase');
 Route::post('/purchase', 'AdminController@storePurchase')->name('purchase.store');
-Route::post('/mrp-adjustment', 'PurchaseDetailController@mrpAdjustment')->name('mrp_adjustment');
+Route::post('/mrp-adjustment', 'AdminController@mrpAdjustment')->name('mrp_adjustment');
+Route::post('/update-mrp', 'AdminController@updateMRP')->name('updateMRP');
 
 Route::get('/stockSummery', 'AdminController@showStockSummery')->name('stockSummery');
 Route::get('/stockModule', 'AdminController@showStockModule')->name('stockModule');

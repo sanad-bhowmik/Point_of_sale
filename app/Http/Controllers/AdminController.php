@@ -26,6 +26,7 @@ use App\PosCategory;
 use App\PosCostingHead;
 use App\PosDescription;
 use App\PosPurchaseAdd;
+use App\PosPurchaseHistory;
 use App\PosPurchaseList;
 use App\PosSalesReturn;
 use App\PosShopListStatus;
@@ -71,8 +72,10 @@ class AdminController extends Controller
 
     public function showSalesCustomer()
     {
-        return view('salesCustomer');
+        $customers = SalesCustomer::all();
+        return view('salesCustomer', ['customers' => $customers]);
     }
+
 
     public function storeSalesCustomer(Request $request)
     {
@@ -81,15 +84,30 @@ class AdminController extends Controller
             'number' => 'required|string',
         ]);
 
-        $salesCustomer = new SalesCustomer();
+        $customerName = $request->input('customerName');
+        $number = $request->input('number');
 
-        $salesCustomer->name = $request->input('customerName');
-        $salesCustomer->number = $request->input('number');
+        // Check if the customer already exists
+        $existingCustomer = SalesCustomer::where('name', $customerName)->first();
 
-        $salesCustomer->save();
+        if ($existingCustomer) {
+            // Update existing customer
+            $existingCustomer->update([
+                'number' => $number,
+            ]);
+            $message = 'Sales customer updated successfully.';
+        } else {
+            // Create new customer
+            $salesCustomer = new SalesCustomer();
+            $salesCustomer->name = $customerName;
+            $salesCustomer->number = $number;
+            $salesCustomer->save();
+            $message = 'Sales customer added successfully.';
+        }
 
-        return redirect()->back()->with('success', 'Sales customer added successfully.');
+        return redirect()->back()->with('success', $message);
     }
+
 
     public function showCommissionJournal()
     {
@@ -266,10 +284,32 @@ class AdminController extends Controller
     {
         $purchaseList = PosPurchaseList::all();
         $vendors = PosPurchaseList::all();
+        $purchaseHistory = PosPurchaseHistory::all();
 
-        return view('purchase', compact('purchaseList', 'vendors'));
+        return view('purchase', compact('purchaseList', 'vendors', 'purchaseHistory'));
     }
 
+
+    public function updateMRP(Request $request)
+    {
+        $request->validate([
+            'categoryName' => 'required',
+            'mrpUpdate' => 'required|numeric',
+        ]);
+
+        $category = $request->input('categoryName');
+        $mrp = $request->input('mrpUpdate');
+
+        $purchaseAdd = PosPurchaseAdd::where('category', $category)->first();
+
+        if ($purchaseAdd) {
+            $purchaseAdd->update(['mrp' => $mrp]);
+
+            return redirect()->back()->with('success', 'MRP updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'No record found for the selected category.');
+        }
+    }
 
 
     public function showSupplierView()
@@ -408,7 +448,17 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Brand saved successfully!');
     }
 
-
+    public function deleteBrand(Request $request)
+    {
+        $brandId = $request->input('brandId');
+        $brand = PosBrand::find($brandId);
+        if ($brand) {
+            $brand->delete();
+            return response()->json(['message' => 'Brand deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Brand not found'], 404);
+        }
+    }
 
     public function saveDescription(Request $request)
     {
@@ -486,16 +536,18 @@ class AdminController extends Controller
         return response()->json($suppliers);
     }
 
-    public function deleteSupplier($id)
+    public function deleteSupplier(Request $request)
     {
-        $supplier = PosAddSupplier::find($id);
-        if (!$supplier) {
+        $supplierId = $request->input('supplierId');
+        $supplier = PosAddSupplier::find($supplierId);
+        if ($supplier) {
+            $supplier->delete();
+            return response()->json(['message' => 'Supplier deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Supplier not found'], 404);
         }
-
-        $supplier->delete();
-
-        return response()->json(['message' => 'Supplier deleted successfully']);
     }
+
 
     public function storeCostingHead(Request $request)
     {
@@ -543,13 +595,13 @@ class AdminController extends Controller
 
     public function deleteShopLogo($id)
     {
-        try {
-            $shopLogo = ShopInfo::findOrFail($id);
+        $shopLogo = ShopInfo::find($id);
+        if ($shopLogo) {
+            // Delete the shop logo record
             $shopLogo->delete();
-
-            return response()->json(['message' => 'Shop logo deleted successfully.'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Failed to delete shop logo.'], 500);
+            return response()->json(['message' => 'Shop logo deleted successfully.']);
+        } else {
+            return response()->json(['message' => 'Shop logo not found.'], 404);
         }
     }
 

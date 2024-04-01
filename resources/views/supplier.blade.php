@@ -197,7 +197,6 @@
     <p style="height: 3px;background: #0002A1;width: 56px;top: -0.75rem;border-radius: 3px;margin-left: 23%;margin-top: 4px;"></p>
     <form id="supplierForm" method="post" action="{{ route('admin.supplier.save') }}" style="padding-left: 10%;padding-right: 10%;">
         {{ csrf_field() }}
-        @method('DELETE')
         <div class="row">
             <div class="form-group" style="margin-bottom: 2rem; width: 48%; float: left;">
                 <label for="supplierName">Supplier Name</label>
@@ -266,9 +265,8 @@
                     <td>{{ $supplier->status == 1 ? 'Active' : 'Inactive' }}</td>
                     <td>
                         <img src="{{ url('assets/images/edit.png') }}" alt="Edit" style="margin-right: 10px;">
-                        <!-- <img src="{{ url('assets/images/trash.png') }}" alt="Delete"> -->
-                        <button id="delete" type="submit" onclick="return confirm('Are you sure you want to delete this supplier?')">
-                            <img src="{{ url('assets/images/trash.png') }}" alt="Delete">
+                        <button class="deleteBtn" data-supplier-id="{{ $supplier->id }}" onclick="deleteSupplier(event)" style="background: transparent;">
+                            <img src="{{ url('assets/images/tr.gif') }}" alt="Delete" style="height: 30px; width: 30px;border-radius: 50px;">
                         </button>
                     </td>
                     @endforeach
@@ -304,22 +302,31 @@
     }
 
 
-    document.getElementById('deleteForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+    function deleteSupplier(event) {
+        var confirmation = confirm('Are you sure you want to delete this supplier?');
+        if (confirmation) {
+            var button = event.target;
+            var supplierId = button.getAttribute('data-supplier-id');
 
-        fetch(this.action, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    console.error('Failed to delete supplier');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    });
+            fetch("{{ route('admin.supplier.delete') }}", {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        supplierId: supplierId
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Reload the page or update the UI as needed
+                        window.location.reload();
+                    } else {
+                        console.error('Failed to delete supplier');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }
 </script>

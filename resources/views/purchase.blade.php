@@ -194,9 +194,9 @@
 <div class="tab-container">
     <div class="tab active" id="tab1" onclick="switchTab(1)" style="font-size: 100%;font-family: none;">Add/Edit Purchase</div>
     <div class="tab" id="tab2" onclick="switchTab(2)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase List</div>
-    <div class="tab" id="tab4" onclick="switchTab(3)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">MRP Adjustment</div>
-    <div class="tab" id="tab5" onclick="switchTab(4)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase Return</div>
-    <div class="tab" id="tab6" onclick="switchTab(5)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase History</div>
+    <div class="tab" id="tab3" onclick="switchTab(3)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">MRP Adjustment</div>
+    <div class="tab" id="tab4" onclick="switchTab(4)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase Return</div>
+    <div class="tab" id="tab5" onclick="switchTab(5)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase History</div>
 </div>
 
 <div class="tab-content active" id="tabContent1">
@@ -344,10 +344,12 @@
     </div>
 </div>
 
-<!-- Tab3 -->
+<!-- MRP Adjust -->
 <div class="tab-content" id="tabContent3">
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Add Customer</h3>
     <!-- mrpAdjust List content -->
-    <form id="mrpAdjust">
+    <form id="mrpAdjust" action="{{ route('updateMRP') }}" method="POST">
+        {{ csrf_field() }}
         <div class="form-group col-md-6">
             <label for="categoryName">Product Category</label>
             <select id="categoryName" name="categoryName" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
@@ -358,27 +360,26 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
-            <label for="dropdown2">Dropdown 2:</label>
-            <select class="form-control" id="dropdown2" name="dropdown2">
-                <!-- Options for Dropdown 2 -->
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+        <div class="form-group" style="margin-left: 10px;">
+            <label for="dropdown2">Brand:</label>
+            <select class="form-control" id="dropdown2" name="dropdown2" style="width: 48%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                @foreach ($purchaseList as $purchase)
+                <option value="{{ $purchase->brand }}">{{ $purchase->brand }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-left: 10px;">
+            <label for="dropdown3">Description:</label>
+            <select class="form-control" id="dropdown3" name="dropdown3" style="width: 48%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                @foreach ($purchaseList as $purchase)
+                <option value="{{ $purchase->description }}">{{ $purchase->description }}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="dropdown3">Dropdown 3:</label>
-            <select class="form-control" id="dropdown3" name="dropdown3">
-                <!-- Options for Dropdown 3 -->
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="inputField">Input Field:</label>
-            <input type="text" class="form-control" id="inputField" name="inputField">
+            <label for="inputField">Update MRP:</label>
+            <input type="text" class="form-control" id="mrpUpdate" name="mrpUpdate" style="width: 48%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;" placeholder="0987654321">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -489,7 +490,49 @@
 </div>
 
 <div class="tab-content" id="tabContent5">
-    <!-- Purchase History content -->
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Bank List</h3>
+    <div style="width: 15%; color: #FF204E;padding: 10px;margin-left: 13px;border-radius: 10px;font-weight: 800;"><span>Total Records: {{ count($purchaseHistory) }}</span></div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid;">ID</th>
+                                <th style="border: 1px solid;">Vendor</th>
+                                <th style="border: 1px solid;">Category</th>
+                                <th style="border: 1px solid;">Brand</th>
+                                <th style="border: 1px solid;">Description</th>
+                                <th style="border: 1px solid;">Cost Price</th>
+                                <th style="border: 1px solid;">Quantity</th>
+                                <th style="border: 1px solid;">Particular</th>
+                                <th style="border: 1px solid;">Date</th>
+                                <th style="border: 1px solid;">Return Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($purchaseHistory as $history)
+                            <tr>
+                                <td>{{ $history->id }}</td>
+                                <td>{{ $history->vendor }}</td>
+                                <td>{{ $history->category }}</td>
+                                <td>{{ $history->brand }}</td>
+                                <td>{{ $history->description }}</td>
+                                <td>{{ $history->cost_price }}</td>
+                                <td>{{ $history->qty }}</td>
+                                <td>{{ $history->particular }}</td>
+                                <td>{{ \Carbon\Carbon::parse($history->date)->format('Y-m-d') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($history->return_date)->format('Y-m-d') }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

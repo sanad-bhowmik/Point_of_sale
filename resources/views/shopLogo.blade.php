@@ -9,12 +9,11 @@
     }
 
     .image-upload {
-        background-color: #f0f0f0;
-        border: 2px solid #ddd;
         border-radius: 5px;
         padding: 10px 20px;
         display: inline-block;
         cursor: pointer;
+        margin-left:27%;
     }
 
     .image-upload span {
@@ -132,8 +131,8 @@
     }
 
     button[type="submit"] {
-        background-color: green;
-        color: white;
+        color: black;
+        border: 2px solid black
     }
 
     button[type="submit"]:hover,
@@ -298,11 +297,15 @@
     <p class="glow-effect"></p>
     <form id="shopLogoForm" method="POST" action="{{ route('admin.storeShopLogo') }}" enctype="multipart/form-data" style="padding-left: 25%">
         {{ csrf_field() }}
-        <div class="form-group" style="margin-bottom: 2rem;">
-            <br>
-            <label for="shopLogo">Shop Logo:</label>
+        <h1><strong style="font-size: 22px;font-weight: 600;text-decoration-line: underline;">Upload Files</strong></h1>
+        <div class="form-group" style="margin-bottom: 2rem;border: 3px dotted gray; width:60%">
+            <div style="margin-top: 23px;text-align: center;">
+                <br>
+                <h4>Select File here</h4>
+                <p style="color: darkgray;">Files Supported: PNG, JPG, JPEG, GIF</p>
+            </div>
             <label for="shopLogoInput" class="image-upload">
-                <span>Choose Image</span>
+                <span style="text-decoration: none;background-color: #005af0;color: #ffffff;padding: 10px 20px;border: none;outline: none;transition: 0.3s;">Choice Image  <img src="{{ url('assets/images/sidenav/upload.svg') }}" alt="Delete" style="height: 30px; width: 30px; border-radius: 50px;" title="Delete"></span>
                 <input type="file" id="shopLogoInput" name="shop_logo" accept="image/*" required onchange="showPreview(this)">
             </label>
             <div id="imagePreview" style="margin-top: 10px;"></div>
@@ -312,9 +315,7 @@
             <button class="animated-button" type="submit">
                 <span>Upload</span>
                 <span></span>
-            </button>
-            <button type="button" onclick="cancelForm()" style="background-color: #c62828;">Cancel</button>
-        </div>
+            </button></div>
     </form>
 </div>
 
@@ -336,7 +337,7 @@
                     <td><img src="{{ asset('assets/images/shoplogo/' . $shop->shop_img) }}" alt="Shop Logo" style="max-width: 100px; max-height: 100px;"></td>
                     <td>
                         <button onclick="deleteShopLogo({{ $shop->id }})" style="background: transparent;">
-                            <img src="{{ url('assets/images/trash.png') }}" alt="Delete">
+                            <img src="{{ url('assets/images/tr.gif') }}" alt="Delete" style="height: 30px; width: 30px; border-radius: 50px;" title="Delete">
                         </button>
                     </td>
                 </tr>

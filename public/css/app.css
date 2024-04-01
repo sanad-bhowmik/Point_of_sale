@@ -8375,7 +8375,7 @@ a.close.disabled {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 41%;
   pointer-events: auto;
   background-color: #f3f4fa;
   background-clip: padding-box;
@@ -17920,8 +17920,8 @@ small {
 
 .navbar .navbar-brand-wrapper .navbar-brand img {
   width: calc(255px - 130px);
-  max-width: 100%;
-  height: 76px;
+  max-width: 75%;
+  height: 65px;
   margin: auto;
   vertical-align: middle;
 }

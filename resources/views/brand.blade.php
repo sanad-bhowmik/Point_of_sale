@@ -177,6 +177,53 @@
             transform: scale3d(1, 1, 1);
         }
     }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 37%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        animation-name: blowUp;
+        animation-duration: 0.5s;
+    }
+
+    @keyframes blowUp {
+        from {
+            transform: scale(0.5);
+        }
+
+        to {
+            transform: scale(1);
+        }
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>
 
 
@@ -243,8 +290,8 @@
                     <td>{{ $brand->category_name }}</td>
                     <td>{{ $brand->name }}</td>
                     <td>
-                        <img src="{{ url('assets/images/edit.png') }}" alt="Edit" style="margin-right: 10px;">
-                        <img src="{{ url('assets/images/trash.png') }}" alt="Delete">
+                        <button class="editBtn" style="background: transparent;"> <img src="{{ url('assets/images/edit.png') }}" alt="Edit" style="margin-right: 10px;"></button>
+                        <button class="deleteBtn" style="background: transparent;" title="Delete"><img src="{{ url('assets/images/tr.gif') }}" alt="Delete" style="height: 30px; width: 30px ;border-radius: 50px;"></button>
                     </td>
                 </tr>
                 @endforeach
@@ -254,6 +301,20 @@
 </div>
 
 
+<!-- Modal -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="editBrandForm">
+            <div class="form-group">
+                <input type="hidden" id="brandId" name="brand_id">
+                <label for="editedBrand">Brand Name</label>
+                <input type="text" id="editedBrand" name="editedBrand" required>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>
 
 @endsection
 
@@ -331,6 +392,73 @@
                 })
                 .catch(error => console.error('Error fetching categories:', error));
         }
+    });
+</script>
+
+<script>
+    var modal = document.getElementById("editModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    function openModal() {
+        modal.style.display = "block";
+        modal.classList.add("blow-up");
+        var row = this.parentNode.parentNode;
+        var brandId = row.querySelector('td:first-child').textContent;
+        var brandName = row.querySelector('td:nth-child(3)').textContent;
+        document.getElementById("brandId").value = brandId;
+        document.getElementById("editedBrand").value = brandName;
+    }
+
+    function deleteBrand() {
+        var confirmation = confirm("Are you sure you want to delete this brand?");
+        if (confirmation) {
+            var row = this.parentNode.parentNode;
+            var brandId = row.querySelector('td:first-child').textContent;
+
+            // Send AJAX request to delete brand
+            fetch("{{ route('admin.brand.delete') }}", {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        brandId: brandId
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        row.remove();
+                        alert("Brand deleted successfully!");
+                    } else {
+                        throw new Error('Failed to delete brand');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting brand:', error);
+                    alert("Failed to delete brand");
+                });
+        }
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    var editButtons = document.querySelectorAll("#brandTable tbody tr .editBtn");
+    editButtons.forEach(function(button) {
+        button.onclick = openModal;
+    });
+
+    var deleteButtons = document.querySelectorAll("#brandTable tbody tr .deleteBtn");
+    deleteButtons.forEach(function(button) {
+        button.onclick = deleteBrand;
     });
 </script>
 @endpush
