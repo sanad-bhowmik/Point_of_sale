@@ -76,6 +76,9 @@ Route::delete('/supplierPayment/delete/{id}', 'AdminController@deleteSupplierPay
 
 
 Route::get('/expense', 'AdminController@showExpenseView')->name('expense');
+Route::post('/expense/save', 'AdminController@saveExpense')->name('saveExpense');
+Route::delete('/deleteExpense/{id}', 'AdminController@deleteExpense')->name('deleteExpense');
+
 
 Route::get('/bankInfo', 'AdminController@showbankinfo')->name('bankInfo');
 Route::post('/saveBankInfo', 'AdminController@saveBankInfo')->name('saveBankInfo');

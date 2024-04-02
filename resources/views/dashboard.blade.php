@@ -16,6 +16,23 @@
       background-position: 100% 0;
     }
   }
+
+  #gradient {
+    background: hsla(46, 73%, 75%, 1);
+    background: linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#EED991", endColorstr="#CCF7F4", GradientType=1);
+  }
+
+  #gradient:hover {
+    background: linear-gradient(90deg, hsla(176, 73%, 88%, 1) 0%, hsla(45, 80%, 85%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(176, 73%, 88%, 1) 0%, hsla(45, 80%, 85%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(176, 73%, 88%, 1) 0%, hsla(45, 80%, 85%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#6699CC", endColorstr="#FFCC66", GradientType=1);
+    transition: background 2.3s ease;
+
+  }
 </style>
 @extends('layout.master')
 
@@ -27,7 +44,7 @@
 <div class="row">
   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
     <div class="card card-statistics">
-      <div class="card-body">
+      <div class="card-body" id="gradient">
         <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
           <div class="float-left">
             <i class="mdi mdi-account-convert text-danger icon-lg"></i>
@@ -47,7 +64,7 @@
   </div>
   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
     <div class="card card-statistics">
-      <div class="card-body">
+      <div class="card-body" id="gradient">
         <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
           <div class="float-left">
             <i class="mdi mdi-receipt text-warning icon-lg"></i>
@@ -67,7 +84,7 @@
   </div>
   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
     <div class="card card-statistics">
-      <div class="card-body">
+      <div class="card-body" id="gradient">
         <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
           <div class="float-left">
             <i class="mdi mdi-poll-box text-success icon-lg"></i>
@@ -87,7 +104,7 @@
   </div>
   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
     <div class="card card-statistics">
-      <div class="card-body">
+      <div class="card-body" id="gradient">
         <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
           <div class="float-left">
             <i class="mdi mdi-sitemap text-info icon-lg"></i>
@@ -106,6 +123,8 @@
     </div>
   </div>
 </div>
+
+
 <div class="row">
   <div class="col-lg-12 grid-margin">
     <div class="card">
@@ -196,6 +215,8 @@
     </div>
   </div>
 </div>
+
+
 <div class="row d-none">
   <div class="col-md-12 grid-margin">
     <div class="card">
@@ -220,6 +241,8 @@
     </div>
   </div>
 </div>
+
+
 <div class="row">
   <div class="col-md-6 col-xl-4 grid-margin stretch-card">
     <div class="card">
@@ -314,6 +337,7 @@
   </div>
 
 </div>
+
 <div class="col-md-12 grid-margin">
   <div class="card">
     <div class="p-4 border-bottom bg-light">
@@ -337,5 +361,5 @@
 {!! Html::script('/assets/js/dashboard.js') !!}
 @endpush
 @push('custom-scripts')
-  {!! Html::script('/assets/js/chart.js') !!}
+{!! Html::script('/assets/js/chart.js') !!}
 @endpush

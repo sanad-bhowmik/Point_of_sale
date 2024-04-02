@@ -103,7 +103,7 @@
         transition: opacity 0.3s ease-in-out;
         background: url(https://wallpapercave.com/wp/wp8963675.jpg);
         background-repeat: no-repeat;
-        height: 87%;
+        height: 90%;
         margin-top: 15px;
         border-radius: 10px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -257,7 +257,7 @@
 
 <div class="tab-container">
     <div class="tab active" id="tab1" onclick="switchTab(1)">Expense</div>
-    <div class="tab" id="tab2" onclick="switchTab(2)">Product Brand List</div>
+    <div class="tab" id="tab2" onclick="switchTab(2)">Add Expense</div>
 </div>
 <div class="tab-content active" id="tabContent1">
     <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Expense History</h3>
@@ -297,7 +297,7 @@
                         </thead>
                         <tbody>
                             @foreach($expenses as $index => $expense)
-                            <tr>
+                            <tr id="expense_row_{{ $expense->id }}">
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $expense->purpose }}</td>
                                 <td>{{ $expense->amount }}</td>
@@ -314,20 +314,36 @@
 </div>
 
 <div class="tab-content" id="tabContent2">
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Add Expense</h3>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add Expense</h4>
+                <p style="height: 3px;background: #B885E7;width: 113px;top: -0.75rem;border-radius: 3px;margin-left: 0%;margin-top: -5px;"></p>
+                <form id="expenseForm" method="POST" action="{{ route('saveExpense') }}" style="padding-left: 10%;padding-right: 10%;">
+                    {{ csrf_field() }}
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label for="purpose">Purpose:</label>
+                        <br>
+                        <input type="text" id="purpose" name="purpose" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <br>
+                        <input type="number" id="amount" name="amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="remarks">Remarks:</label>
+                        <br>
+                        <input type="text" id="remarks" name="remarks" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Save</button>
+                    </div>
+                </form>
 
-    <div class="modern-table" style="margin-top: 20px;border: 1px solid;">
-        <table id="brandTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Category</th>
-                    <th>Brand</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
 </div>
 

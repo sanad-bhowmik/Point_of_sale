@@ -195,6 +195,36 @@ class AdminController extends Controller
         return view('expense', ['expenses' => $expenses]);
     }
 
+    public function saveExpense(Request $request)
+    {
+        $request->validate([
+            'purpose' => 'required|string',
+            'amount' => 'required|numeric',
+            'remarks' => 'required|string',
+        ]);
+
+        $expense = new Expense();
+        // $expense->user_id = auth()->user()->id;
+        $expense->user_id = 108;
+        $expense->purpose = $request->purpose;
+        $expense->amount = $request->amount;
+        $expense->remarks = $request->remarks;
+        $expense->status = 'pending';
+        $expense->save();
+
+        return redirect()->route('expense')->with('success', 'Expense added successfully!');
+    }
+
+    public function deleteExpense($id)
+    {
+        $expense = Expense::find($id);
+        if (!$expense) {
+            return response()->json(['success' => false, 'message' => 'Expense not found'], 404);
+        }
+        $expense->delete();
+
+        return response()->json(['success' => true, 'message' => 'Expense deleted successfully']);
+    }
 
     public function showSupplierPaymentView()
     {
