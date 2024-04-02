@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccLedger;
+use App\Models\CashFlowReport;
 use App\Models\CommissionJournal;
+use App\Models\DroppedInvoice;
 use App\Models\Expense;
 use App\Models\Investment;
 use App\Models\PaymentDeleteHistory;
@@ -14,6 +16,7 @@ use App\Models\PosCustomer;
 use App\Models\PosInvoice;
 use App\Models\PosStockReport;
 use App\Models\PosStockSummary;
+use App\Models\ProductWiseProfit;
 use App\Models\PurchaseDetail;
 use App\Models\ShopInfo;
 use App\Models\SupplierDueReport;
@@ -69,6 +72,28 @@ class AdminController extends Controller
     {
         return view('salesReturn');
     }
+
+    public function showProductWiseProfit()
+    {
+        // return view('productWiseProfit');
+        $productWiseProfit = ProductWiseProfit::all(); 
+        return view('productWiseProfit', compact('productWiseProfit'));
+    }
+
+    public function showDroppedInvoice()
+    {
+        $droppedInvoices = DroppedInvoice::all(); 
+        return view('droppedInvoice', compact('droppedInvoices'));
+    }
+
+
+    public function showCashFlow()
+    {
+        $cashFlowReports = CashFlowReport::all();
+
+        return view('cashFlowReport', compact('cashFlowReports'));
+    }
+
 
     public function showSalesCustomer()
     {

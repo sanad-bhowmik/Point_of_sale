@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductWiseProfit extends Model
 {
-    use HasFactory;
 
     protected $table = 'product_wise_profit';
 
@@ -23,5 +21,6 @@ class ProductWiseProfit extends Model
         'sale_return_qty',
         'profit_loss',
         'status',
+        'created_at',
     ];
 }

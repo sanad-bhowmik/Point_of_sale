@@ -196,7 +196,7 @@
       </div>
     </li>
     <!-- Stock -->
-
+    <!-- Account -->
     <li class="nav-item ">
       <a class="nav-link" data-toggle="collapse" href="#accountSubMenu" aria-expanded="false" aria-controls="accountSubMenu">
         <img src="{{ url('assets/images/sidenav/verified-account.png') }}" alt="profile image" style="margin-right: 10px;">
@@ -215,6 +215,13 @@
         <a class="nav-link {{ active_class(['accLedger']) }}" href="{{ route('accLedger') }}">
           <img src="{{ url('assets/images/sidenav/annual-report.png') }}" alt="profile image" style="margin-right: 10px;">
           <span class="menu-title">Acc_Ledger</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="accountSubMenu">
+        <a class="nav-link {{ active_class(['productWiseProfit']) }}" href="{{ route('productWiseProfit') }}">
+          <img src="{{ url('assets/images/sidenav/annual-report.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Product Wise Profit/Loss</span>
         </a>
       </div>
     </li>
@@ -259,13 +266,31 @@
     </li>
     <!-- Payment -->
 
-
-    <li class="nav-item {{ active_class(['/']) }}">
-      <a class="nav-link" href="{{ url('/') }}">
-        <img src="{{ url('assets/images/sidenav/report.png') }}" alt="profile image" style="margin-right: 10px;">
+    <!-- Report -->
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#reportSubMenu" aria-expanded="false" aria-controls="reportSubMenu">
+        <img src="{{ url('assets/images/sidenav/3d-report.png') }}" alt="profile image" style="margin-right: 10px;">
         <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Report</span>
+        <i class="menu-arrow"></i>
       </a>
+
+      <div class="collapse" id="reportSubMenu">
+        <a class="nav-link {{ active_class(['cashFlowReport']) }}" href="{{ route('cashFlowReport') }}">
+          <img src="{{ url('assets/images/sidenav/money-flow.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Cash Flow</span>
+        </a>
+      </div>
+
+      <div class="collapse" id="reportSubMenu">
+        <a class="nav-link {{ active_class(['droppedInvoice']) }}" href="{{ route('droppedInvoice') }}">
+          <img src="{{ url('assets/images/sidenav/cancel.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Dropped Invoice</span>
+        </a>
+      </div>
+
     </li>
+    <!-- Report -->
+
 
     <li class="nav-item {{ active_class(['charts/chartjs']) }}">
       <a class="nav-link" href="{{ url('/charts/chartjs') }}">

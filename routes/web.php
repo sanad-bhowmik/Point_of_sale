@@ -100,6 +100,15 @@ Route::post('/comissionJournal/store', 'AdminController@storeCommissionJournal')
 
 Route::get('/salesCustomer', 'AdminController@showSalesCustomer')->name('salesCustomer');
 Route::post('/salesCustomer', 'AdminController@storeSalesCustomer')->name('storeSalesCustomer');
+
+
+Route::get('/cashFlowReport', 'AdminController@showCashFlow')->name('cashFlowReport');
+
+Route::get('/droppedInvoice', 'AdminController@showDroppedInvoice')->name('droppedInvoice');
+
+Route::get('/productWiseProfit', 'AdminController@showProductWiseProfit')->name('productWiseProfit');
+
+
 // ----------------------Admin Controller------------------------//
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
