@@ -293,9 +293,7 @@
     <div class="tab" id="tab2" onclick="switchTab(2)">Shop Logo</div>
 </div>
 <div class="tab-content active" id="tabContent1">
-    <h3 style="text-align: center;">Add Shop Logo</h3>
-    <p class="glow-effect"></p>
-    <form id="shopLogoForm" method="POST" action="{{ route('admin.storeShopLogo') }}" enctype="multipart/form-data" style="padding-left: 25%">
+    <form id="shopLogoForm" method="POST" action="{{ route('admin.storeShopLogo') }}" enctype="multipart/form-data" style="padding-left: 25%;margin-top: 50px;">
         {{ csrf_field() }}
         <h1><strong style="font-size: 22px;font-weight: 600;text-decoration-line: underline;">Upload Files</strong></h1>
         <div class="form-group" style="margin-bottom: 2rem;border: 3px dotted gray; width:60%">

@@ -1,9 +1,9 @@
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-    <a class="navbar-brand brand-logo" href="{{ url('/') }}">
+    <a class="navbar-brand brand-logo" href="{{ url('/home') }}">
       <img src="{{ url('assets/images/favicon.png') }}" alt="logo" />
     </a>
-    <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
+    <a class="navbar-brand brand-logo-mini" href="{{ url('/home') }}">
       <img src="{{ url('assets/images/logo-mini.svg') }}" alt="logo" />
     </a>
   </div>
@@ -20,7 +20,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
           <span class="profile-text d-none d-md-inline-flex">{{ Auth::user()->name }}</span>
-          <img class="img-xs rounded-circle" src="https://media2.giphy.com/avatars/Quillustration/6xXKKQCvUcMA.png" alt="Profile image">
+          <img class="img-xs rounded-circle" src="https://img.freepik.com/premium-photo/illustration-cute-boy-avatar-graphic-white-background-created-with-generative-ai-technology_67092-4584.jpg" alt="Profile image">
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
           <a class="dropdown-item mt-2" href="{{ route('manageAccount') }}">Manage Accounts</a>

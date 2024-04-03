@@ -17881,12 +17881,11 @@ small {
   -webkit-transition: left 0.25s ease, width 0.25s ease;
   -moz-transition: left 0.25s ease, width 0.25s ease;
   -ms-transition: left 0.25s ease, width 0.25s ease;
-  background: hsla(205, 46%, 10%, 1);
-  background: linear-gradient(90deg, hsla(205, 46%, 10%, 1) 0%, hsla(191, 28%, 23%, 1) 50%, hsla(207, 41%, 27%, 1) 100%);
-  background: -moz-linear-gradient(90deg, hsla(205, 46%, 10%, 1) 0%, hsla(191, 28%, 23%, 1) 50%, hsla(207, 41%, 27%, 1) 100%);
-  background: -webkit-linear-gradient(90deg, hsla(205, 46%, 10%, 1) 0%, hsla(191, 28%, 23%, 1) 50%, hsla(207, 41%, 27%, 1) 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#0E1C26", endColorstr="#2A454B", GradientType=1);
-  /* background: linear-gradient(120deg, #2f78e9, #128bfc, #18bef1); */
+  background: hsla(217, 100%, 50%, 1);
+  background: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+  background: -moz-linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+  background: -webkit-linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#0061FF", endColorstr="#60EFFF", GradientType=1);
 }
 
 .navbar .navbar-brand-wrapper {
@@ -18654,7 +18653,7 @@ small {
 /* Sidebar */
 
 .sidebar {
-  
+
   min-height: calc(100vh - 63px);
   background: #fff;
   font-family: "Roboto", sans-serif;
@@ -18862,9 +18861,11 @@ small {
 }
 
 .sidebar .nav:not(.sub-menu)>.nav-item:hover:not(.nav-profile)>.nav-link {
-  background: #A1FFCE;
-  background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);
-  background: linear-gradient(to right, #FAFFD1, #A1FFCE);
+  background: hsla(197, 16%, 78%, 1);
+  background: linear-gradient(315deg, hsla(197, 16%, 78%, 1) 0%, hsla(192, 17%, 94%, 1) 53%);
+  background: -moz-linear-gradient(315deg, hsla(197, 16%, 78%, 1) 0%, hsla(192, 17%, 94%, 1) 53%);
+  background: -webkit-linear-gradient(315deg, hsla(197, 16%, 78%, 1) 0%, hsla(192, 17%, 94%, 1) 53%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#BFCCD1", endColorstr="#eef2f3", GradientType=1);
 
 }
 

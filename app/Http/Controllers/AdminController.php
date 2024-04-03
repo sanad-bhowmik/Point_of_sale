@@ -33,6 +33,7 @@ use App\PosPurchaseHistory;
 use App\PosPurchaseList;
 use App\PosSalesReturn;
 use App\PosShopListStatus;
+use App\PosShopPaymentList;
 use App\PosUser;
 use App\SalesCustomer;
 use Illuminate\Http\Request;
@@ -73,16 +74,49 @@ class AdminController extends Controller
         return view('salesReturn');
     }
 
+    public function showShopPayment()
+    {
+        $shopPayments = PosShopPaymentList::all();
+        return view('shopPayment', compact('shopPayments'));
+    }
+
+    public function saveShopPayment(Request $request)
+    {
+        $request->validate([
+            'fromDate' => 'required|date',
+            'toDate' => 'required|date',
+            'monthNo' => 'required|integer',
+            'remarks' => 'required|string',
+            'transactionID' => 'required|string',
+        ]);
+
+        $monthName = date('F', mktime(0, 0, 0, $request->monthNo, 1));
+
+        // $userId = auth()->id();
+        $userId = 108;
+
+        PosShopPaymentList::create([
+            'user_id' => $userId,
+            'date' => $request->fromDate,
+            'month' => $monthName,
+            'remarks' => $request->remarks,
+            'transaction_id' => $request->transactionID,
+        ]);
+
+        return redirect()->back()->with('success', 'Shop payment saved successfully!');
+    }
+
+
     public function showProductWiseProfit()
     {
         // return view('productWiseProfit');
-        $productWiseProfit = ProductWiseProfit::all(); 
+        $productWiseProfit = ProductWiseProfit::all();
         return view('productWiseProfit', compact('productWiseProfit'));
     }
 
     public function showDroppedInvoice()
     {
-        $droppedInvoices = DroppedInvoice::all(); 
+        $droppedInvoices = DroppedInvoice::all();
         return view('droppedInvoice', compact('droppedInvoices'));
     }
 
@@ -325,7 +359,6 @@ class AdminController extends Controller
 
         return view('stockModule', compact('stockReports', 'totalQty', 'categories', 'brands', 'descriptions', 'purchaseLists'));
     }
-
 
     public function showStockSummery()
     {

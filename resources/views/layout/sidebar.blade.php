@@ -110,6 +110,13 @@
           <span class="menu-title">Shop Status</span>
         </a>
       </div>
+
+      <div class="collapse" id="adminSubMenu">
+        <a class="nav-link {{ active_class(['shopPayment']) }}" href="{{ route('shopPayment') }}">
+          <img src="{{ url('assets/images/sidenav/online-shop.png') }}" alt="profile image" style="margin-right: 10px;">
+          <span class="menu-title">Shop Payment</span>
+        </a>
+      </div>
     </li>
     <!-- Purchase -->
     <li class="nav-item {{ active_class(['/purchase']) }}">

@@ -273,8 +273,41 @@
 
 
 <div class="tab-content " id="tabContent2">
-    <h3 style="text-align: center;">Stock/Price Adjustment</h3>
-    <p class="glow-effect"></p>
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Stock / Price Adjustment</h3>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Stock / Price Adjustment</h4>
+                <p style="height: 3px;background: #B885E7;width: 150px;top: -0.75rem;border-radius: 3px;margin-left: 0%;margin-top: -5px;"></p>
+                <div class="table-responsive">
+                    <table id="invoiceTable" class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <th>Description</th>
+                                <th>Cost Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($purchaseLists as $index => $purchase)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $purchase->category }}</td>
+                                <td>{{ $purchase->brand }}</td>
+                                <td>{{ $purchase->description }}</td>
+                                <td>{{ $purchase->cost_price }}</td>
+                                <td>{{ $purchase->qty }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="tab-content " id="tabContent3">

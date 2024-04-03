@@ -350,36 +350,38 @@
     <!-- mrpAdjust List content -->
     <form id="mrpAdjust" action="{{ route('updateMRP') }}" method="POST">
         {{ csrf_field() }}
-        <div class="form-group col-md-6">
-            <label for="categoryName">Product Category</label>
-            <select id="categoryName" name="categoryName" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
-                <option value="" selected>Select Category</option>
-                <option value="" selected>Select Category</option>
-                @foreach ($vendors as $vendor)
-                <option value="{{ $vendor->category }}">{{ $vendor->category }}</option>
-                @endforeach
-            </select>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="categoryName">Product Category</label>
+                <select id="categoryName" name="categoryName" required class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                    <option value="" selected>Select Category</option>
+                    @foreach ($vendors as $vendor)
+                    <option value="{{ $vendor->category }}">{{ $vendor->category }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-6" style="margin-left: 10px;">
+                <label for="dropdown2">Brand:</label>
+                <select class="form-control" id="dropdown2" name="dropdown2" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                    @foreach ($purchaseList as $purchase)
+                    <option value="{{ $purchase->brand }}">{{ $purchase->brand }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
-        <div class="form-group" style="margin-left: 10px;">
-            <label for="dropdown2">Brand:</label>
-            <select class="form-control" id="dropdown2" name="dropdown2" style="width: 48%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
-                @foreach ($purchaseList as $purchase)
-                <option value="{{ $purchase->brand }}">{{ $purchase->brand }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="form-group" style="margin-left: 10px;">
-            <label for="dropdown3">Description:</label>
-            <select class="form-control" id="dropdown3" name="dropdown3" style="width: 48%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
-                @foreach ($purchaseList as $purchase)
-                <option value="{{ $purchase->description }}">{{ $purchase->description }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="inputField">Update MRP:</label>
-            <input type="text" class="form-control" id="mrpUpdate" name="mrpUpdate" style="width: 48%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;" placeholder="0987654321">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="dropdown3">Description:</label>
+                <select class="form-control" id="dropdown3" name="dropdown3" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;">
+                    @foreach ($purchaseList as $purchase)
+                    <option value="{{ $purchase->description }}">{{ $purchase->description }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-6" style="margin-left: 10px;">
+                <label for="inputField">Update MRP:</label>
+                <input type="text" class="form-control" id="mrpUpdate" name="mrpUpdate" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;height: 45px;font-size: 14px;" placeholder="0987654321">
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

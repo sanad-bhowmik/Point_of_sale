@@ -18,11 +18,11 @@
   }
 
   #gradient {
-    background: hsla(46, 73%, 75%, 1);
-    background: linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
-    background: -moz-linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
-    background: -webkit-linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#EED991", endColorstr="#CCF7F4", GradientType=1);
+    background: hsla(197, 16%, 78%, 1);
+    background: linear-gradient(315deg, hsla(197, 16%, 78%, 1) 0%, hsla(192, 17%, 94%, 1) 53%);
+    background: -moz-linear-gradient(315deg, hsla(197, 16%, 78%, 1) 0%, hsla(192, 17%, 94%, 1) 53%);
+    background: -webkit-linear-gradient(315deg, hsla(197, 16%, 78%, 1) 0%, hsla(192, 17%, 94%, 1) 53%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#BFCCD1", endColorstr="#eef2f3", GradientType=1);
   }
 
   #gradient:hover {

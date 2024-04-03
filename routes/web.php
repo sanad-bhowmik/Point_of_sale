@@ -109,6 +109,10 @@ Route::get('/droppedInvoice', 'AdminController@showDroppedInvoice')->name('dropp
 Route::get('/productWiseProfit', 'AdminController@showProductWiseProfit')->name('productWiseProfit');
 
 
+Route::get('/shopPayment', 'AdminController@showShopPayment')->name('shopPayment');
+Route::post('/shopPayment', 'AdminController@saveShopPayment')->name('saveShopPayment');
+
+
 // ----------------------Admin Controller------------------------//
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
