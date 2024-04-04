@@ -93,7 +93,11 @@
 
     .tab.active {
         border-color: black;
-        background-color: #1B1B1B;
+        background: hsla(248, 21%, 15%, 1);
+background: linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
+background: -moz-linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
+background: -webkit-linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#211F2F", endColorstr="#918CA9", GradientType=1 );;
         color: white;
     }
 
@@ -201,7 +205,7 @@
 
         <div class="form-group" style="margin-bottom: 2rem;">
             <label for="categoryName">Product Category</label>
-            <br>
+            <br>j
             <select id="categoryName" name="category_id" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; transition: all 0.3s ease;">
                 <option value="" selected>Select Category</option>
             </select>
