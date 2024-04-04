@@ -316,49 +316,52 @@
 </div>
 
 <div class="tab-content" id="tabContent4">
-    <h3 style="text-align: center;">Product With barcode</h3>
-    <p class="glow-effect"></p>
-    <div class="modern-table-container" style="height: 400px; overflow-y: auto;">
-        <div class="modern-table" style="border: 1px solid;">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Si no</th>
-                        <th>Vendor</th>
-                        <th>Category</th>
-                        <th>Brand</th>
-                        <th>Description</th>
-                        <th>Barcode</th>
-                        <th>Cost Price</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                    $counter = 1;
-                    @endphp
-                    @foreach ($purchaseLists as $purchase)
-                    <tr>
-                        <td>{{ $counter++ }}</td>
-                        <td>{{ $purchase->vendor }}</td>
-                        <td>{{ $purchase->category }}</td>
-                        <td>{{ $purchase->brand }}</td>
-                        <td>{{ $purchase->description }}</td>
-                        <td>{{ $purchase->barcode }}</td>
-                        <td>{{ $purchase->cost_price }}</td>
-                        <td>
-                            @if ($purchase->qty > 0)
-                            Available
-                            @else
-                            Unavailable
-                            @endif
-                        </td>
-                        <td>{{ \Carbon\Carbon::parse($purchase->date)->format('Y-m-d') }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Product With barcode</h3>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-dark" id="cashFlowTable">
+                        <thead>
+                            <tr>
+                                <th>Si no</th>
+                                <th>Vendor</th>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <th>Description</th>
+                                <th>Barcode</th>
+                                <th>Cost Price</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $counter = 1;
+                            @endphp
+                            @foreach ($purchaseLists as $purchase)
+                            <tr>
+                                <td>{{ $counter++ }}</td>
+                                <td>{{ $purchase->vendor }}</td>
+                                <td>{{ $purchase->category }}</td>
+                                <td>{{ $purchase->brand }}</td>
+                                <td>{{ $purchase->description }}</td>
+                                <td>{{ $purchase->barcode }}</td>
+                                <td>{{ $purchase->cost_price }}</td>
+                                <td>
+                                    @if ($purchase->qty > 0)
+                                    Available
+                                    @else
+                                    Unavailable
+                                    @endif
+                                </td>
+                                <td>{{ \Carbon\Carbon::parse($purchase->date)->format('Y-m-d') }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

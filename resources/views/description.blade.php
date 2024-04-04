@@ -194,7 +194,10 @@
 
         <input type="hidden" id="categoryId" name="category_id">
         <input type="hidden" id="brandId" name="brand_id">
+        @if(auth()->check())
         <input type="hidden" id="userId" name="user_id" value="{{ auth()->user()->id }}">
+        @endif
+
 
         <div class="form-group" style="margin-bottom: 2rem;">
             <label for="categoryName">Product Category</label>
@@ -236,27 +239,43 @@
 
 
 <div class="tab-content" id="tabContent2">
-    <div class="modern-table" style="margin-top: 20px;border: 1px solid;">
-        <table id="descriptionTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Category</th>
-                    <th>Brand</th>
-                    <th>Description</th>
-                    <th>Sale Price</th>
-                    <th>MRP</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Cash Flow List</h3>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-dark" id="cashFlowTable">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <th>Description</th>
+                                <th>Sale Price</th>
+                                <th>MRP</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($descriptions as $description)
+                            <tr>
+                                <td>{{$description->category}}</td>
+                                <td>{{$description->brand}}</td>
+                                <td>{{$description->description}}</td>
+                                <td>{{$description->sale_price}}</td>
+                                <td>{{$description->mrp}}</td>
+                                <td>{{$description->status}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
-
 </div>
+
+
 @if(session('success'))
 <div class="alert alert-success">
     {{ session('success') }}
@@ -331,28 +350,6 @@
                 .catch(error => console.error('Error fetching brands:', error));
         }
 
-        function fetchDescriptionData() {
-            fetch("{{ route('admin.description.data') }}")
-                .then(response => response.json())
-                .then(data => {
-                    const tbody = document.querySelector('#descriptionTable tbody');
-                    tbody.innerHTML = ''; // Clear existing data
-                    data.forEach(row => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td>${row.id}</td>
-                            <td>${row.category}</td>
-                            <td>${row.brand}</td>
-                            <td>${row.description}</td>
-                            <td>${row.sale_price}</td>
-                            <td>${row.mrp}</td>
-                            <td>${row.status}</td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-                })
-                .catch(error => console.error('Error fetching description data:', error));
-        }
 
         const descriptionForm = document.getElementById('descriptionForm');
         descriptionForm.addEventListener('submit', function(event) {

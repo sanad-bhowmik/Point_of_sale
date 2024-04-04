@@ -304,43 +304,51 @@
 
 <!-- Additional tab contents -->
 <div class="tab-content" id="tabContent2">
-    <div style="margin-top: 20px;">
-        <label for="filter">Filter:</label>
-        <input type="text" id="filter" onkeyup="filterTable()" placeholder="Search...">
-    </div>
-    <div class="modern-table" style="margin-top: 20px;border: 1px solid;">
-        <table id="brandTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Vendor</th>
-                    <th>Category</th>
-                    <th>Brand</th>
-                    <th>Description</th>
-                    <th>Barcode</th>
-                    <th>Cost Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($purchaseList as $purchase)
-                <tr>
-                    <td>{{ $purchase->id }}</td>
-                    <td>{{ $purchase->vendor }}</td>
-                    <td>{{ $purchase->category }}</td>
-                    <td>{{ $purchase->brand }}</td>
-                    <td>{{ $purchase->description }}</td>
-                    <td>{{ $purchase->barcode }}</td>
-                    <td>{{ $purchase->cost_price }}</td>
-                    <td>{{ $purchase->qty }}</td>
-                    <td>{{ $purchase->total }}</td>
-                    <td>{{ date('Y/m/d', strtotime($purchase->date)) }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Cash Flow List</h3>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div style="margin-top: 20px;margin-bottom: 20px;">
+                    <label for="filter">Filter:</label>
+                    <input type="text" id="filter" onkeyup="filterTable()" placeholder="Search..." style="width: 17%;">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-dark" id="cashFlowTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Vendor</th>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <th>Description</th>
+                                <th>Barcode</th>
+                                <th>Cost Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($purchaseList as $purchase)
+                            <tr>
+                                <td>{{ $purchase->id }}</td>
+                                <td>{{ $purchase->vendor }}</td>
+                                <td>{{ $purchase->category }}</td>
+                                <td>{{ $purchase->brand }}</td>
+                                <td>{{ $purchase->description }}</td>
+                                <td>{{ $purchase->barcode }}</td>
+                                <td>{{ $purchase->cost_price }}</td>
+                                <td>{{ $purchase->qty }}</td>
+                                <td>{{ $purchase->total }}</td>
+                                <td>{{ date('Y/m/d', strtotime($purchase->date)) }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

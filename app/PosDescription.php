@@ -15,6 +15,7 @@ class PosDescription extends Model
         'brand',
         'brand_id',
         'unit_id',
+        'user_id',
         'vat_percent',
         'description_code',
         'description',

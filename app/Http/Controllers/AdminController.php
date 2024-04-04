@@ -448,7 +448,10 @@ class AdminController extends Controller
 
     public function showDescriptionView()
     {
-        return view('description');
+        $descriptions = PosDescription::all();
+
+        return view('description', compact('descriptions'));
+        
     }
 
     public function showShopStatusView()
