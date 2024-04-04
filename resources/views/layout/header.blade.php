@@ -24,8 +24,8 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
           <a class="dropdown-item mt-2" href="{{ route('manageAccount') }}">Manage Accounts</a>
-          <a class="dropdown-item" href="#">Change Password</a>
-          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ url('assets/images/exit.png') }}" alt="logo" /> Sign Out</a>
+          <a class="dropdown-item" href="{{ route('manageAccount') }}"><img src="{{ url('assets/images/sidenav/padlock.png') }}" alt="logo" /> <span style="margin-left: 5px;">Change Password</span></a>
+          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ url('assets/images/sidenav/log-out.png') }}" alt="logo" /> Sign Out</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
           </form>
