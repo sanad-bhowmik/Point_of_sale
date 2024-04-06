@@ -4,12 +4,12 @@
       <img src="{{ url('assets/images/favicon.png') }}" alt="logo" />
     </a>
     <a class="navbar-brand brand-logo-mini" href="{{ url('/home') }}">
-      <img src="{{ url('assets/images/logo-mini.svg') }}" alt="logo" />
+      <img src="{{ url('assets/images/favicon.png') }}" alt="logo" />
     </a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-      <span class="mdi mdi-menu"></span>
+      <span class="mdi"><img src="{{ url('assets/images/sidenav/list.png') }}" alt=""></span>
     </button>
 
     <!-- Display current time and date here -->
