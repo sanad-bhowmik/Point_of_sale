@@ -35,6 +35,7 @@ use App\PosSalesReturn;
 use App\PosShopListStatus;
 use App\PosShopPaymentList;
 use App\PosUser;
+use App\Role;
 use App\SalesCustomer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -334,6 +335,39 @@ class AdminController extends Controller
         return view('manageAccount');
     }
 
+    public function permission()
+    {
+        $users = User::all();
+        $roles = Role::all();
+        return view('permission', ['users' => $users, 'roles' => $roles]);
+    }
+
+    public function updateRole(Request $request)
+    {
+        $userId = $request->input('userId');
+        $roleId = $request->input('roleId');
+
+        // Update user role
+        $user = User::find($userId);
+        $user->role_id = $roleId;
+        $user->save();
+
+        return response()->json(['status' => 'success']);
+    }
+
+    public function getUserRole($userId)
+    {
+        $user = User::findOrFail($userId);
+
+        $roleName = Role::find($user->role_id)->name;
+
+        return $roleName;
+    }
+    public function showProductSales()
+    {
+        return view('productSales');
+    }
+
     public function showAccLedgerView()
     {
         $accLedgerData = AccLedger::all();
@@ -451,7 +485,6 @@ class AdminController extends Controller
         $descriptions = PosDescription::all();
 
         return view('description', compact('descriptions'));
-        
     }
 
     public function showShopStatusView()

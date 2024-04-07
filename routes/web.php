@@ -17,6 +17,10 @@ Route::get('/home', function () {
     return view('dashboard', ['dataString' => $data]);
 });
 
+Route::get('/permission', 'AdminController@permission')->name('permission')->middleware('role:1');
+Route::post('/updateUserRole', 'AdminController@updateRole')->name('updateUserRole');
+Route::post('/updateUserRole', 'AdminController@updateRole')->name('updateUserRole');
+Route::get('/getUserRole/{userId}', 'AdminController@getUserRole')->name('getUserRole');
 
 // ----------------------Admin Controller------------------------//
 Route::get('/manageAccount', 'AdminController@manageAccount')->name('manageAccount');
@@ -24,6 +28,7 @@ Route::post('/update-profile', 'AdminController@updateProfile')->name('updatePro
 
 
 Route::get('/category', 'AdminController@showCategoryView')->name('admin.category');
+
 Route::post('/category/store', 'AdminController@storeCategory')->name('admin.category.store');
 Route::get('/category/data', 'AdminController@getCategoryData')->name('admin.category.data');
 
@@ -87,6 +92,7 @@ Route::get('/investment', 'AdminController@showInvestmentView')->name('investmen
 
 Route::get('/salesReturn', 'AdminController@showSalesReturn')->name('salesReturn');
 Route::post('/salesReturn', 'AdminController@storeSalesReturn')->name('salesReturn.store');
+Route::get('/productSales', 'AdminController@showProductSales')->name('productSales');
 
 Route::get('/searchInvoice', 'AdminController@showSearchInvoice')->name('searchInvoice');
 

@@ -46,6 +46,18 @@
         <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Dashboard</span>
       </a>
     </li>
+
+    @auth
+    @if(Auth::check() && Auth::user()->role_id === 1)
+    <li class="nav-item {{ active_class(['/permission']) }}">
+      <a class="nav-link" href="{{ url('/permission') }}">
+        <img src="{{ url('assets/images/sidenav/permission.png') }}" alt="profile image" style="margin-right: 10px;">
+        <span class="menu-title" style="color: #1e3d59;font-size: 120%;font-family:monospace; font-weight: 600;">Permission</span>
+      </a>
+    </li>
+    @endif
+    @endauth
+
     <!-- Admin -->
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#adminSubMenu" aria-expanded="false" aria-controls="adminSubMenu">
@@ -60,6 +72,7 @@
           <span class="menu-title">Category</span>
         </a>
       </div>
+
 
       <div class="collapse" id="adminSubMenu">
         <a class="nav-link {{ active_class(['brand']) }}" href="{{ route('admin.brand') }}">
@@ -136,7 +149,7 @@
       </a>
 
       <div class="collapse" id="salesSubMenu">
-        <a class="nav-link {{ active_class(['stockSummery']) }}" href="{{ route('stockSummery') }}">
+        <a class="nav-link {{ active_class(['productSales']) }}" href="{{ route('productSales') }}">
           <img src="{{ url('assets/images/sidenav/psale.png') }}" alt="profile image" style="margin-right: 10px;">
           <span class="menu-title">Product Sales</span>
         </a>

@@ -2,16 +2,7 @@
 
 @push('plugin-styles')
 @endpush
-
 <style>
-    #categoryFilter {
-        height: 26px;
-        margin-left: 14px;
-        padding: 2px;
-        font-family: math;
-        border: 1px solid #cac0c0;
-    }
-
     .form-group {
         margin-bottom: 20px;
     }
@@ -38,6 +29,26 @@
     input[type="text"]:focus,
     input[type="number"]:focus {
         border-color: #007bff;
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button[type="submit"] {
+        background-color: green;
+        color: white;
+    }
+
+    button[type="submit"]:hover,
+    button[type="button"]:hover {
+        opacity: 0.8;
     }
 
     .form-group:focus-within label {
@@ -170,51 +181,61 @@
 
 
 <div class="tab-container">
-    <div class="tab active" id="tab1" onclick="switchTab(1)" style="display: none;">Dropped Invoice</div>
+    <div class="tab active" id="tab1" onclick="switchTab(1)" style="display: none;">Product Sale</div>
 </div>
-
 
 <div class="tab-content active" id="tabContent1">
-    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Dropped Invoice</h3>
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-dark" id="cashFlowTable">
-                        <thead>
-                            <tr>
-                                <th>Si</th>
-                                <th>Invoice No</th>
-                                <th>Branch</th>
-                                <th>Drop Status</th>
-                                <th>Drop Reason</th>
-                                <th>Invoice Date</th>
-                                <th>Request Date</th>
-                                <th>Approved Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($droppedInvoices as $index => $droppedInvoice)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $droppedInvoice->invoice_no }}</td>
-                                <td>{{ $droppedInvoice->branch }}</td>
-                                <td>{{ $droppedInvoice->drop_status }}</td>
-                                <td>{{ $droppedInvoice->drop_reason }}</td>
-                                <td>{{ $droppedInvoice->invoice_date }}</td>
-                                <td>{{ $droppedInvoice->request_date }}</td>
-                                <td>{{ $droppedInvoice->approved_date }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+    <h3 style="text-align: center;margin-bottom: 4%;">Product Sale</h3>
+    <form id="categoryForm" method="POST" style="padding-left: 10%;padding-right: 10%;">
+        {{ csrf_field() }}
+
+        <div class="form-row" style="margin-bottom: 2rem;">
+            <div class="col">
+                <label for="customerName">Customer Name:</label>
+                <input type="text" class="form-control" id="customerName" name="customerName" placeholder="John Doe" required>
+            </div>
+
+            <div class="col">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Example@email.com" required>
             </div>
         </div>
-    </div>
+
+        <div class="form-row" style="margin-bottom: 2rem;">
+            <div class="col">
+                <label for="address">Address:</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Main Street, Your County, and Anytown" required>
+            </div>
+            <div class="col">
+                <label for="mobileNumber">Mobile Number:</label>
+                <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="0132456789" required>
+            </div>
+        </div>
+
+        <div class="form-row" style="margin-bottom: 2rem;">
+            <div class="col">
+                <label for="barcode">EMI/Barcode :</label>
+                <input type="text" class="form-control" id="barcode" name="barcode" placeholder="123abc!@E" required>
+            </div>
+            <div class="col">
+                <label for="paymentMethod">Payment Method:</label>
+                <select id="paymentMethod" name="paymentMethod" class="form-control" required>
+                    <option value="" selected>Select Method</option>
+                    <option value="product1">Cash</option>
+                    <option value="product2">Credit</option>
+                    <option value="product3">Cash & Credit</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
 </div>
 
-<!-- <div id="custom-toast">Bank details saved successfully.</div> -->
+
 
 @endsection
 
@@ -245,23 +266,14 @@
 
         var selectedTab = document.getElementById("tab" + tabNumber);
         selectedTab.classList.add("active");
-    }
 
-    function filterTable() {
-        var inputDate = document.getElementById("searchDate").value;
-        var table = document.getElementById("cashFlowTable");
-        var rows = table.getElementsByTagName("tr");
-
-        for (var i = 1; i < rows.length; i++) {
-            var dateCell = rows[i].getElementsByTagName("td")[3];
-            var dateValue = dateCell.textContent || dateCell.innerText;
-
-            if (dateValue === inputDate) {
-                rows[i].style.display = "";
-            } else {
-                rows[i].style.display = "none";
-            }
+        if (tabNumber === 2) {
+            fetchCategoryData();
         }
     }
+
+    var today = new Date();
+    var formattedDate = today.getFullYear() + '-' + (today.getMonth() + 1).toString().padStart(2, '0') + '-' + today.getDate().toString().padStart(2, '0');
+    document.getElementById('date').value = formattedDate;
 </script>
 @endpush

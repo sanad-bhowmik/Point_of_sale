@@ -94,10 +94,11 @@
     .tab.active {
         border-color: black;
         background: hsla(248, 21%, 15%, 1);
-background: linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
-background: -moz-linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
-background: -webkit-linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#211F2F", endColorstr="#918CA9", GradientType=1 );;
+        background: linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
+        background: -moz-linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
+        background: -webkit-linear-gradient(90deg, hsla(248, 21%, 15%, 1) 0%, hsla(250, 14%, 61%, 1) 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#211F2F", endColorstr="#918CA9", GradientType=1);
+        ;
         color: white;
     }
 
@@ -196,14 +197,14 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#211F2F", en
 @section('content')
 
 <div class="tab-container">
-    <div class="tab active" id="tab1" onclick="switchTab(1)" style="font-size: 100%;font-family: none;">Add/Edit Purchase</div>
-    <div class="tab" id="tab2" onclick="switchTab(2)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase List</div>
+    <div class="tab " id="tab1" onclick="switchTab(1)" style="font-size: 100%;font-family: none;">Add/Edit Purchase</div>
+    <div class="tab active" id="tab2" onclick="switchTab(2)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase List</div>
     <div class="tab" id="tab3" onclick="switchTab(3)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">MRP Adjustment</div>
     <div class="tab" id="tab4" onclick="switchTab(4)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase Return</div>
     <div class="tab" id="tab5" onclick="switchTab(5)" style="font-size: 100%;font-family: none;line-height: 21px;font-weight:900;">Purchase History</div>
 </div>
 
-<div class="tab-content active" id="tabContent1">
+<div class="tab-content " id="tabContent1">
     <h3 style="text-align: center;margin-bottom: 4%;">Add/Edit Purchase</h3>
     <form id="brandForm" action="{{ route('purchase') }}" method="post" style="padding-left: 10%;padding-right: 10%;font-size: 14px;">
         {{ csrf_field() }}
@@ -307,9 +308,9 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#211F2F", en
 </div>
 
 <!-- Additional tab contents -->
-<div class="tab-content" id="tabContent2">
+<div class="tab-content active" id="tabContent2">
 
-    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Cash Flow List</h3>
+    <h3 style="text-align: center;margin-bottom: 5%;background-color: #B885E7; color: white;border: 1px solid">Purchase List</h3>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
