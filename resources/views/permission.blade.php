@@ -172,9 +172,58 @@
             right: 0;
         }
     }
-    #currentRole{
+
+    #currentRole {
         text-align: center;
         color: lightgray;
+    }
+
+    .container {
+        --input-focus: #2d8cf0;
+        --input-out-of-focus: #ccc;
+        --bg-color: #fff;
+        --bg-color-alt: #666;
+        --main-color: #323232;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .container input {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .checkmark {
+        width: 23px;
+        height: 21px;
+        position: relative;
+        top: 0;
+        left: 0;
+        border: 2px solid var(--main-color);
+        border-radius: 5px;
+        background-color: #FF204E;
+        transition: all 0.3s;
+    }
+
+    .container input:checked~.checkmark {
+        background-color: #03C988;
+    }
+
+    .checkmark:after {
+        content: "";
+        width: 5px;
+        height: 10px;
+        position: absolute;
+        top: 2px;
+        left: 8px;
+        display: none;
+        border: solid var(--bg-color);
+        border-width: 0 2.5px 2.5px 0;
+        transform: rotate(45deg);
+    }
+
+    .container input:checked~.checkmark:after {
+        display: block;
     }
 </style>
 
@@ -237,40 +286,160 @@
                             <td class="py-1" style="font-size: large;font-weight: 300;">
                                 Admin
                             </td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
                         </tr>
                         <tr>
                             <td class="py-1" style="font-size: large;font-weight: 300;">
                                 Shop Owner
                             </td>
-                            <td><img src="{{ url('assets/images/sidenav/cross.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
                         </tr>
                         <tr>
                             <td class="py-1" style="font-size: large;font-weight: 300;">
                                 Shop Worker
                             </td>
-                            <td><img src="{{ url('assets/images/sidenav/cross.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
-                            <td><img src="{{ url('assets/images/sidenav/checked.png') }}" alt="" id="icon"></td>
+                            <td>
+                                <label class="container">
+                                    <input type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
+                            <td>
+                                <label class="container">
+                                    <input checked="checked" type="checkbox">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -291,6 +460,8 @@
 @endpush
 
 @push('custom-scripts')
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('saveBtn').addEventListener('click', function() {
@@ -336,4 +507,6 @@
         });
     });
 </script>
+
+
 @endpush

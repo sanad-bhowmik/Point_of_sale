@@ -22,10 +22,9 @@
           <span class="profile-text d-none d-md-inline-flex">{{ Auth::user()->name }}</span>
           <img class="img-xs rounded-circle" src="https://img.freepik.com/premium-photo/illustration-cute-boy-avatar-graphic-white-background-created-with-generative-ai-technology_67092-4584.jpg" alt="Profile image">
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-          <a class="dropdown-item mt-2" href="{{ route('manageAccount') }}">Manage Accounts</a>
-          <a class="dropdown-item" href="{{ route('manageAccount') }}"><img src="{{ url('assets/images/sidenav/padlock.png') }}" alt="logo" /> <span style="margin-left: 5px;">Change Password</span></a>
-          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ url('assets/images/sidenav/log-out.png') }}" alt="logo" /> Sign Out</a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown" style="background: #E0EAFC; background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);background: linear-gradient(to right, #CFDEF3, #E0EAFC); ">
+          <a class="dropdown-item mt-2" href="{{ route('manageAccount') }}"><img src="{{ url('assets/images/sidenav/user.png') }}" alt="logo" style="margin-right: 5px;" /> Manage Accounts</a>
+          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ url('assets/images/sidenav/log-out.png') }}" alt="logo" style="margin-right: 5px;" /> Sign Out</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
           </form>

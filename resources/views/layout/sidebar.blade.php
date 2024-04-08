@@ -48,7 +48,7 @@
     </li>
 
     @auth
-    @if(Auth::check() && Auth::user()->role_id === 1)
+    @if(Auth::check() && (Auth::user()->role_id === 1 || Auth::user()->role_id === 2))
     <li class="nav-item {{ active_class(['/permission']) }}">
       <a class="nav-link" href="{{ url('/permission') }}">
         <img src="{{ url('assets/images/sidenav/permission.png') }}" alt="profile image" style="margin-right: 10px;">
