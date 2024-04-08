@@ -240,7 +240,7 @@
 
       <div class="collapse" id="accountSubMenu">
         <a class="nav-link {{ active_class(['productWiseProfit']) }}" href="{{ route('productWiseProfit') }}">
-          <img src="{{ url('assets/images/sidenav/annual-report.png') }}" alt="profile image" style="margin-right: 10px;">
+          <img src="{{ url('assets/images/sidenav/money.png') }}" alt="profile image" style="margin-right: 10px;">
           <span class="menu-title">Product Wise Profit/Loss</span>
         </a>
       </div>
