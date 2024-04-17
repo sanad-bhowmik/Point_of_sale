@@ -52,100 +52,100 @@ Route::post('/updateUserRole', 'AdminController@updateRole')->name('updateUserRo
 Route::get('/getUserRole/{userId}', 'AdminController@getUserRole')->name('getUserRole');
 
 // ----------------------Admin Controller------------------------//
-Route::get('/manageAccount', 'AdminController@manageAccount')->name('manageAccount');
-Route::post('/update-profile', 'AdminController@updateProfile')->name('updateProfile');
+Route::get('/manageAccount', 'AdminController@manageAccount')->name('manageAccount')->middleware('role:1,2,3');
+Route::post('/update-profile', 'AdminController@updateProfile')->name('updateProfile')->middleware('role:1,2,3');
 
 
-Route::get('/category', 'AdminController@showCategoryView')->name('admin.category');
+Route::get('/category', 'AdminController@showCategoryView')->name('admin.category')->middleware('role:1,2,3');
 
-Route::post('/category/store', 'AdminController@storeCategory')->name('admin.category.store');
-Route::get('/category/data', 'AdminController@getCategoryData')->name('admin.category.data');
+Route::post('/category/store', 'AdminController@storeCategory')->name('admin.category.store')->middleware('role:1,2,3');
+Route::get('/category/data', 'AdminController@getCategoryData')->name('admin.category.data')->middleware('role:1,2,3');
 
-Route::get('/brand/data', 'AdminController@getBrandData')->name('admin.brand.data');
-Route::get('/brand', 'AdminController@showBrandView')->name('admin.brand');
-Route::post('/brand/store', 'AdminController@storeBrand')->name('admin.brand.store');
-Route::delete('/brand/delete', 'AdminController@deleteBrand')->name('admin.brand.delete');
-
-
-Route::get('/description', 'AdminController@showDescriptionView')->name('admin.description');
-Route::get('/description/data', 'AdminController@getDescriptionData')->name('admin.description.data');
-Route::post('/description/save', 'AdminController@saveDescription')->name('admin.description.save');
-
-Route::get('/seregistration', 'AdminController@showSeRegistrationView')->name('admin.seregistration');
-Route::post('/save-se-registration', 'AdminController@saveSeRegistration')->name('save.seregistration');
-Route::delete('/deleteUser/{id}', 'AdminController@deleteUser')->name('deleteUser');
-
-Route::get('/supplier', 'AdminController@showSupplierView')->name('admin.supplier');
-Route::post('/supplier', 'AdminController@saveSupplier')->name('admin.supplier.save');
-Route::delete('/supplier/delete', 'AdminController@deleteSupplier')->name('admin.supplier.delete');
-
-Route::get('/costingHead', 'AdminController@showCostingHeadView')->name('admin.costingHead');
-Route::post('/costingHead', 'AdminController@storeCostingHead')->name('admin.costingHead');
-
-Route::get('/shopLogo', 'AdminController@showShopLogoView')->name('admin.shopLogo');
-Route::post('/shopLogo', 'AdminController@storeShopLogo')->name('admin.storeShopLogo');
-Route::delete('/admin/deleteShopLogo/{id}', 'AdminController@deleteShopLogo')->name('admin.deleteShopLogo');
-
-Route::get('/shopStatus', 'AdminController@showShopStatusView')->name('admin.shopStatus');
-Route::post('/updateShopStatus/{id}', 'AdminController@updateShopStatus')->name('admin.updateShopStatus');
+Route::get('/brand/data', 'AdminController@getBrandData')->name('admin.brand.data')->middleware('role:1,2,3');
+Route::get('/brand', 'AdminController@showBrandView')->name('admin.brand')->middleware('role:1,2,3');
+Route::post('/brand/store', 'AdminController@storeBrand')->name('admin.brand.store')->middleware('role:1,2,3');
+Route::delete('/brand/delete', 'AdminController@deleteBrand')->name('admin.brand.delete')->middleware('role:1,2,3');
 
 
-Route::get('/purchase', 'AdminController@showpurchaseView')->name('purchase');
-Route::post('/purchase', 'AdminController@storePurchase')->name('purchase.store');
-Route::post('/mrp-adjustment', 'AdminController@mrpAdjustment')->name('mrp_adjustment');
-Route::post('/update-mrp', 'AdminController@updateMRP')->name('updateMRP');
+Route::get('/description', 'AdminController@showDescriptionView')->name('admin.description')->middleware('role:1,2,3');
+Route::get('/description/data', 'AdminController@getDescriptionData')->name('admin.description.data')->middleware('role:1,2,3');
+Route::post('/description/save', 'AdminController@saveDescription')->name('admin.description.save')->middleware('role:1,2,3');
 
-Route::get('/stockSummery', 'AdminController@showStockSummery')->name('stockSummery');
-Route::get('/stockModule', 'AdminController@showStockModule')->name('stockModule');
+Route::get('/seregistration', 'AdminController@showSeRegistrationView')->name('admin.seregistration')->middleware('role:1,2,3');
+Route::post('/save-se-registration', 'AdminController@saveSeRegistration')->name('save.seregistration')->middleware('role:1,2,3');
+Route::delete('/deleteUser/{id}', 'AdminController@deleteUser')->name('deleteUser')->middleware('role:1,2,3');
 
+Route::get('/supplier', 'AdminController@showSupplierView')->name('admin.supplier')->middleware('role:1,2,3');
+Route::post('/supplier', 'AdminController@saveSupplier')->name('admin.supplier.save')->middleware('role:1,2,3');
+Route::delete('/supplier/delete', 'AdminController@deleteSupplier')->name('admin.supplier.delete')->middleware('role:1,2,3');
 
-Route::get('/accJournal', 'AdminController@showAccJournalView')->name('accJournal');
-Route::get('/accLedger', 'AdminController@showAccLedgerView')->name('accLedger');
+Route::get('/costingHead', 'AdminController@showCostingHeadView')->name('admin.costingHead')->middleware('role:1,2,3');
+Route::post('/costingHead', 'AdminController@storeCostingHead')->name('admin.costingHead')->middleware('role:1,2,3');
 
+Route::get('/shopLogo', 'AdminController@showShopLogoView')->name('admin.shopLogo')->middleware('role:1,2,3');
+Route::post('/shopLogo', 'AdminController@storeShopLogo')->name('admin.storeShopLogo')->middleware('role:1,2,3');
+Route::delete('/admin/deleteShopLogo/{id}', 'AdminController@deleteShopLogo')->name('admin.deleteShopLogo')->middleware('role:1,2,3');
 
-Route::get('/supplierPayment', 'AdminController@showSupplierPaymentView')->name('supplierPayment');
-Route::get('/supplierPayment', 'AdminController@showSupplierPaymentView')->name('supplierPayment');
-Route::post('/supplierPayment/delete/{id}', 'AdminController@deleteSupplierPayment')->name('supplierPayment.delete');
-Route::delete('/supplierPayment/delete/{id}', 'AdminController@deleteSupplierPayment')->name('supplierPayment.delete');
-
-
-Route::get('/expense', 'AdminController@showExpenseView')->name('expense');
-Route::post('/expense/save', 'AdminController@saveExpense')->name('saveExpense');
-Route::delete('/deleteExpense/{id}', 'AdminController@deleteExpense')->name('deleteExpense');
-
-
-Route::get('/bankInfo', 'AdminController@showbankinfo')->name('bankInfo');
-Route::post('/saveBankInfo', 'AdminController@saveBankInfo')->name('saveBankInfo');
-
-Route::get('/investment', 'AdminController@showInvestmentView')->name('investment');
-
-Route::get('/salesReturn', 'AdminController@showSalesReturn')->name('salesReturn');
-Route::post('/salesReturn', 'AdminController@storeSalesReturn')->name('salesReturn.store');
-Route::get('/productSales', 'AdminController@showProductSales')->name('productSales');
-
-Route::get('/searchInvoice', 'AdminController@showSearchInvoice')->name('searchInvoice');
-
-Route::get('/adjustCreditSale', 'AdminController@showAdjustCredit')->name('adjustCreditSale');
-Route::post('/adjustCreditSale/updatePay/{id}', [AdminController::class, 'updatePay'])->name('adjustCreditSale.updatePay');
+Route::get('/shopStatus', 'AdminController@showShopStatusView')->name('admin.shopStatus')->middleware('role:1,2,3');
+Route::post('/updateShopStatus/{id}', 'AdminController@updateShopStatus')->name('admin.updateShopStatus')->middleware('role:1,2,3');
 
 
-Route::get('/comissionJournal', 'AdminController@showCommissionJournal')->name('comissionJournal');
-Route::post('/comissionJournal/store', 'AdminController@storeCommissionJournal')->name('storeCommissionJournal');
+Route::get('/purchase', 'AdminController@showpurchaseView')->name('purchase')->middleware('role:1,2,3');
+Route::post('/purchase', 'AdminController@storePurchase')->name('purchase.store')->middleware('role:1,2,3');
+Route::post('/mrp-adjustment', 'AdminController@mrpAdjustment')->name('mrp_adjustment')->middleware('role:1,2,3');
+Route::post('/update-mrp', 'AdminController@updateMRP')->name('updateMRP')->middleware('role:1,2,3');
+
+Route::get('/stockSummery', 'AdminController@showStockSummery')->name('stockSummery')->middleware('role:1,2,3');
+Route::get('/stockModule', 'AdminController@showStockModule')->name('stockModule')->middleware('role:1,2,3');
 
 
-Route::get('/salesCustomer', 'AdminController@showSalesCustomer')->name('salesCustomer');
-Route::post('/salesCustomer', 'AdminController@storeSalesCustomer')->name('storeSalesCustomer');
+Route::get('/accJournal', 'AdminController@showAccJournalView')->name('accJournal')->middleware('role:1,2,3');
+Route::get('/accLedger', 'AdminController@showAccLedgerView')->name('accLedger')->middleware('role:1,2,3');
 
 
-Route::get('/cashFlowReport', 'AdminController@showCashFlow')->name('cashFlowReport');
+Route::get('/supplierPayment', 'AdminController@showSupplierPaymentView')->name('supplierPayment')->middleware('role:1,2,3');
+Route::get('/supplierPayment', 'AdminController@showSupplierPaymentView')->name('supplierPayment')->middleware('role:1,2,3');
+Route::post('/supplierPayment/delete/{id}', 'AdminController@deleteSupplierPayment')->name('supplierPayment.delete')->middleware('role:1,2,3');
+Route::delete('/supplierPayment/delete/{id}', 'AdminController@deleteSupplierPayment')->name('supplierPayment.delete')->middleware('role:1,2,3');
 
-Route::get('/droppedInvoice', 'AdminController@showDroppedInvoice')->name('droppedInvoice');
 
-Route::get('/productWiseProfit', 'AdminController@showProductWiseProfit')->name('productWiseProfit');
+Route::get('/expense', 'AdminController@showExpenseView')->name('expense')->middleware('role:1,2,3');
+Route::post('/expense/save', 'AdminController@saveExpense')->name('saveExpense')->middleware('role:1,2,3');
+Route::delete('/deleteExpense/{id}', 'AdminController@deleteExpense')->name('deleteExpense')->middleware('role:1,2,3');
 
 
-Route::get('/shopPayment', 'AdminController@showShopPayment')->name('shopPayment');
-Route::post('/shopPayment', 'AdminController@saveShopPayment')->name('saveShopPayment');
+Route::get('/bankInfo', 'AdminController@showbankinfo')->name('bankInfo')->middleware('role:1,2,3');
+Route::post('/saveBankInfo', 'AdminController@saveBankInfo')->name('saveBankInfo')->middleware('role:1,2,3');
+
+Route::get('/investment', 'AdminController@showInvestmentView')->name('investment')->middleware('role:1,2,3');
+
+Route::get('/salesReturn', 'AdminController@showSalesReturn')->name('salesReturn')->middleware('role:1,2,3');
+Route::post('/salesReturn', 'AdminController@storeSalesReturn')->name('salesReturn.store')->middleware('role:1,2,3');
+Route::get('/productSales', 'AdminController@showProductSales')->name('productSales')->middleware('role:1,2,3');
+
+Route::get('/searchInvoice', 'AdminController@showSearchInvoice')->name('searchInvoice')->middleware('role:1,2,3');
+
+Route::get('/adjustCreditSale', 'AdminController@showAdjustCredit')->name('adjustCreditSale')->middleware('role:1,2,3');
+Route::post('/adjustCreditSale/updatePay/{id}', [AdminController::class, 'updatePay'])->name('adjustCreditSale.updatePay')->middleware('role:1,2,3');
+
+
+Route::get('/comissionJournal', 'AdminController@showCommissionJournal')->name('comissionJournal')->middleware('role:1,2,3');
+Route::post('/comissionJournal/store', 'AdminController@storeCommissionJournal')->name('storeCommissionJournal')->middleware('role:1,2,3');
+
+
+Route::get('/salesCustomer', 'AdminController@showSalesCustomer')->name('salesCustomer')->middleware('role:1,2,3');
+Route::post('/salesCustomer', 'AdminController@storeSalesCustomer')->name('storeSalesCustomer')->middleware('role:1,2,3');
+
+
+Route::get('/cashFlowReport', 'AdminController@showCashFlow')->name('cashFlowReport')->middleware('role:1,2,3');
+
+Route::get('/droppedInvoice', 'AdminController@showDroppedInvoice')->name('droppedInvoice')->middleware('role:1,2,3');
+
+Route::get('/productWiseProfit', 'AdminController@showProductWiseProfit')->name('productWiseProfit')->middleware('role:1,2,3');
+
+
+Route::get('/shopPayment', 'AdminController@showShopPayment')->name('shopPayment')->middleware('role:1,2,3');
+Route::post('/shopPayment', 'AdminController@saveShopPayment')->name('saveShopPayment')->middleware('role:1,2,3');
 
 
 // ----------------------Admin Controller------------------------//
